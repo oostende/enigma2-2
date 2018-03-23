@@ -190,7 +190,6 @@ if test "$BOXTYPE" == "gb7252"; then
 	AC_DEFINE(KEY_F1_TO_KEY_F6, 1,[define when rc sends a KEY_F1 event for its KEY_F6 key])
 	AC_DEFINE(KEY_F2_TO_KEY_AUX, 1,[define when rc sends a KEY_F2 event for its KEY_AUX key])
 	AC_DEFINE(KEY_SCREEN_TO_KEY_MODE, 1,[define when rc sends a KEY_MODE event for its KEY_ASPECT key])
-	AC_DEFINE(FORCE_ALPHABLENDING_ACCELERATION, 1,[define to Accelerate alphablending blits])
 fi
 
 #if test "$MACHINEBUILD" == "gbipbox"; then
