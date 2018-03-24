@@ -1,6 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap
-from Components.config import config, ConfigNothing
+from Components.config import config, ConfigNothing, ConfigText, ConfigPassword
 from Components.Label import Label
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
