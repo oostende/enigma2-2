@@ -1,4 +1,4 @@
-from enigma import eDVBResourceManager, Misc_Options
+from enigma import eDVBResourceManager, Misc_Options, eDVBCIInterfaces
 from Tools.Directories import fileExists, fileCheck, pathExists, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getMachineBuild
@@ -24,6 +24,12 @@ def getHasTuners():
 		nimfile.close()
 		return len(data) > 0
 	return False
+
+SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots()
+SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
+for cislot in range (0, SystemInfo["CommonInterface"]):
+	SystemInfo["CI%dSupportsHighBitrates" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_tsclk"  % cislot)
+	SystemInfo["CI%dRelevantPidsRoutingSupport" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing"  % cislot)
 
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
 SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
@@ -82,7 +88,6 @@ SystemInfo["HasMMC"] = getBoxType() in ('vusolo4k', 'hd51', 'hd52', 'gbquad4k', 
 SystemInfo["HasSwap"] = pathExists("/dev/mmcblk0p10")
 SystemInfo["HasMultiBoot"] = fileCheck("/boot/STARTUP_1") and getMachineBuild() not in ('gb7252')
 SystemInfo["HasMultiBootGB"] = SystemInfo["HasSwap"] and fileCheck("/boot/STARTUP_1") and getMachineBuild() in ('gb7252')
-SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
 SystemInfo["HasTranscoding"] = pathExists("/proc/stb/encoder/0") or fileCheck("/dev/bcm_enc0")
 SystemInfo["HasTranscodingH265"] = fileExists("/proc/stb/encoder/0/vcodec_choices") and "h265" in open("/proc/stb/encoder/0/vcodec_choices", "r").read()
 SystemInfo["CanNotDoSimultaneousTranscodeAndPIP"] = getBoxType() in ('vusolo4k') or getMachineBuild() in ('gb7252')
