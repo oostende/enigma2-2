@@ -344,7 +344,7 @@ class ConfigSelection(ConfigElement):
 		self.changed()
 
 	def tostring(self, val):
-		return str(val)
+		return val
 
 	def getValue(self):
 		return self._value
@@ -382,21 +382,14 @@ class ConfigSelection(ConfigElement):
 		self.value = self.choices[(i + 1) % nchoices]
 
 	def getText(self):
-		if self._descr is not None:
-			return self._descr
-		descr = self._descr = self.description[self.value]
-		if descr:
-			return _(descr)
-		return descr
+		if self._descr is None:
+			self._descr = self.description[self.value]
+		return self._descr
 
 	def getMulti(self, selected):
-		if self._descr is not None:
-			descr = self._descr
-		else:
-			descr = self._descr = self.description[self.value]
-		if descr:
-			return ("text", _(descr))
-		return ("text", descr)
+		if self._descr is None:
+			self._descr = self.description[self.value]
+		return ("text", self._descr)
 
 	# HTML
 	def getHTML(self, id):
@@ -421,7 +414,6 @@ class ConfigSelection(ConfigElement):
 # several customized versions exist for different
 # descriptions.
 #
-
 class ConfigBoolean(ConfigElement):
 	def __init__(self, default = False, descriptions = {False: _("false"), True: _("true")}, graphic=True):
 		ConfigElement.__init__(self)
@@ -449,10 +441,7 @@ class ConfigBoolean(ConfigElement):
 			self.value = True
 
 	def getText(self):
-		descr = self.descriptions[self.value]
-		if descr:
-			return _(descr)
-		return descr
+		return self.descriptions[self.value]
 
 	def getMulti(self, selected):
 		from config import config
@@ -495,20 +484,17 @@ class ConfigBoolean(ConfigElement):
 			self.changedFinal()
 			self.last_value = self.value
 
-yes_no_descriptions = {False: _("no"), True: _("yes")}
 class ConfigYesNo(ConfigBoolean):
 	def __init__(self, default = False):
-		ConfigBoolean.__init__(self, default = default, descriptions = yes_no_descriptions)
+		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("no"), True: _("yes")})
 
-on_off_descriptions = {False: _("off"), True: _("on")}
 class ConfigOnOff(ConfigBoolean):
 	def __init__(self, default = False):
-		ConfigBoolean.__init__(self, default = default, descriptions = on_off_descriptions)
+		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("off"), True: _("on")})
 
-enable_disable_descriptions = {False: _("disabled"), True: _("enabled")}
 class ConfigEnableDisable(ConfigBoolean):
 	def __init__(self, default = False):
-		ConfigBoolean.__init__(self, default = default, descriptions = enable_disable_descriptions)
+		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("disabled"), True: _("enabled")})
 
 class ConfigDateTime(ConfigElement):
 	def __init__(self, default, formatstring, increment = 86400):
@@ -529,7 +515,7 @@ class ConfigDateTime(ConfigElement):
 		return strftime(self.formatstring, localtime(self.value))
 
 	def getMulti(self, selected):
-		return "text", strftime(self.formatstring, localtime(self.value))
+		return ("text", strftime(self.formatstring, localtime(self.value)))
 
 	def fromstring(self, val):
 		return int(val)
@@ -670,7 +656,7 @@ class ConfigSequence(ConfigElement):
 			else:
 				value += (self.censor_char * len(str(self.limits[num][1])))
 			num += 1
-		return value, mPos
+		return (value, mPos)
 
 	def getText(self):
 		(value, mPos) = self.genText()
@@ -681,9 +667,9 @@ class ConfigSequence(ConfigElement):
 			# only mark cursor when we are selected
 			# (this code is heavily ink optimized!)
 		if self.enabled:
-			return "mtext"[1-selected:], value, [mPos]
+			return ("mtext"[1-selected:], value, [mPos])
 		else:
-			return "text", value
+			return ("text", value)
 
 	def tostring(self, val):
 		if val is not None:
@@ -766,17 +752,17 @@ class ConfigIP(ConfigSequence):
 			if value:
 				value += self.seperator
 			value += str(i)
-		leftPos = sum(block_strlen[:self.marked_block])+self.marked_block
+		leftPos = sum(block_strlen[:(self.marked_block)])+self.marked_block
 		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
 		mBlock = range(leftPos, rightPos)
-		return value, mBlock
+		return (value, mBlock)
 
 	def getMulti(self, selected):
 		(value, mBlock) = self.genText()
 		if self.enabled:
-			return "mtext"[1-selected:], value, mBlock
+			return ("mtext"[1-selected:], value, mBlock)
 		else:
-			return "text", value
+			return ("text", value)
 
 	def getHTML(self, id):
 		# we definitely don't want leading zeros

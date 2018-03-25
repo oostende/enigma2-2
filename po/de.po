@@ -11689,6 +11689,9 @@ msgstr "deaktiviere Intro Anzeige"
 msgid "disable move mode"
 msgstr "Verschiebemodus ausschalten"
 
+msgid "disable"
+msgstr "Deaktivieren"
+
 msgid "disabled"
 msgstr "Deaktiviert"
 
@@ -11748,6 +11751,9 @@ msgstr "Verschiebemodus aktivieren"
 
 msgid "enabled"
 msgstr "Aktiviert"
+
+msgid "enable"
+msgstr "aktivieren"
 
 msgid "end alternatives edit"
 msgstr "Alternativen-Bearbeitung beenden"
