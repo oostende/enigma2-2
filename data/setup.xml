@@ -114,6 +114,7 @@
 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown on the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item>
 		<item level="1" text="Channel list update Eventinfo delay" description="Channel list update interval for Eventinfo on cursor moving">config.usage.servicelist_eventinfo_delay</item>
 		<item level="1" text="Show bootvideo on boot" requires="Bootvideo">config.usage.show_bootvideo</item>
+		<item level="2" text="Show True/False as graphical switch" description="Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch.">config.usage.boolean_graphic</item>
 	</setup>
 	<setup level="2" key="epgsettings" title="EPG settings">
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when it is available.">config.epg.eit</item>

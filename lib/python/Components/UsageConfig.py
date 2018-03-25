@@ -49,7 +49,7 @@ def InitUsageConfig():
 	config.usage.record_indicator_mode = ConfigSelection(default = "2", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename")), ("3", _("Red colored"))])
 	config.usage.record_indicator_mode.addNotifier(refreshServiceList)
 
-	choicelist = [("-1", _("Disable"))]
+	choicelist = [("-1", _("Disabled"))]
 	for i in range(0,1300,100):
 		choicelist.append((str(i), ngettext("%d pixel wide", "%d pixels wide", i) % i))
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
@@ -409,6 +409,8 @@ def InitUsageConfig():
 		config.usage.toggle12to8characterVFD = ConfigYesNo(default = False)
 		config.usage.toggle12to8characterVFD.addNotifier(set12to8characterVFD)
 
+	config.usage.boolean_graphic = ConfigYesNo(default=False)
+
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
 	config.epg.mhw = ConfigYesNo(default = False)
@@ -536,7 +538,7 @@ def InitUsageConfig():
 		("100", "100 MB/s")])
 	config.misc.erase_speed.addNotifier(updateEraseSpeed, immediate_feedback = False)
 	config.misc.erase_flags = ConfigSelection(default="1", choices = [
-		("0", _("Disable")),
+		("0", _("Disabled")),
 		("1", _("Internal hdd only")),
 		("3", _("Everywhere"))])
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)

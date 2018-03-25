@@ -11689,6 +11689,9 @@ msgstr "deaktiviere Intro Anzeige"
 msgid "disable move mode"
 msgstr "Verschiebemodus ausschalten"
 
+msgid "disable"
+msgstr "Deaktivieren"
+
 msgid "disabled"
 msgstr "Deaktiviert"
 
@@ -11748,6 +11751,9 @@ msgstr "Verschiebemodus aktivieren"
 
 msgid "enabled"
 msgstr "Aktiviert"
+
+msgid "enable"
+msgstr "aktivieren"
 
 msgid "end alternatives edit"
 msgstr "Alternativen-Bearbeitung beenden"
@@ -12979,12 +12985,6 @@ msgstr "umgeschaltet"
 
 #~ msgid "Zap back to service before tuner setup?"
 #~ msgstr "Zurückschalten zum vorher laufenden Sender?"
-
-#~ msgid "disable"
-#~ msgstr "Deaktivieren"
-
-#~ msgid "enable"
-#~ msgstr "aktivieren"
 
 #~ msgid "not used"
 #~ msgstr "Nicht verwendet"
