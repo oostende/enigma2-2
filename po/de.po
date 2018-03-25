@@ -12986,12 +12986,6 @@ msgstr "umgeschaltet"
 #~ msgid "Zap back to service before tuner setup?"
 #~ msgstr "Zurückschalten zum vorher laufenden Sender?"
 
-#~ msgid "disable"
-#~ msgstr "Deaktivieren"
-
-#~ msgid "enable"
-#~ msgstr "aktivieren"
-
 #~ msgid "not used"
 #~ msgstr "Nicht verwendet"
 
