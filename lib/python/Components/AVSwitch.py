@@ -119,10 +119,13 @@ def InitAVSwitch():
 		policy2_choices.update({"nonlinear": _("Stretch nonlinear")})
 
 	if "scale" in policy2_choices_raw and not "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		# TRANSLATORS: (aspect ratio policy: scale as close to fullscreen as possible)
 		policy2_choices.update({"scale": _("Stretch linear")})
+	if "full" in policy2_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if the content aspect ratio does not match the screen ratio)
+		policy2_choices.update({"full": _("Full screen")})
 	if "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		# TRANSLATORS: (aspect ratio policy: automatically select the best aspect ratio mode)
 		policy2_choices.update({"auto": _("Stretch linear")})
 	if "bestfit" in policy2_choices_raw:
 		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
@@ -132,6 +135,7 @@ def InitAVSwitch():
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
 
 	policy_choices_proc="/proc/stb/video/policy_choices"
+
 	try:
 		policy_choices_raw=open(policy_choices_proc, "r").read()
 	except:
@@ -170,10 +174,13 @@ def InitAVSwitch():
 
 	# "auto", "bestfit" and "scale" are aliasses for the same: Stretch linear
 	if "scale" in policy_choices_raw and not "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		# TRANSLATORS: (aspect ratio policy: scale as close to fullscreen as possible)
 		policy_choices.update({"scale": _("Stretch linear")})
+	if "full" in policy_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if the content aspect ratio does not match the screen ratio)
+		policy_choices.update({"full": _("Full screen")})
 	if "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		# TRANSLATORS: (aspect ratio policy: automatically select the best aspect ratio mode)
 		policy_choices.update({"auto": _("Stretch linear")})
 	if "bestfit" in policy_choices_raw:
 		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
