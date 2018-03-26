@@ -1,5 +1,5 @@
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
-
+from Components.SystemInfo import SystemInfo
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 import os
@@ -97,19 +97,20 @@ class VideoHardware:
 		"640x480" : { 60: "640x480" } }
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
+
 	modes["DVI-PC"] = ["PC"]
 
 	if chipset in ('bcm7358', 'bcm7346', 'bcm7356', 'bcm7405', 'bcm7362', 'bcm73625'):
-		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
+		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
-		# modes["DVI"] = ["720p", "1080p", "2160p", "1080i", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])
 	elif chipset in ('bcm7252', 'bcm7251', 'bcm7251S', 'bcm7252s'):
 		modes["DVI"] = ["720p", "1080i", "1080p", "2160p", "2160p30", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p", "2160p"])
 		del modes["Scart"]
 	else:
-		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+		if SystemInfo["HasYPbPr"]:
+			modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i"])
 
