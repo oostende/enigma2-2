@@ -160,14 +160,14 @@ class Setup(ConfigListScreen, Screen):
 					continue
 
 				requires = x.get("requires")
-				if requires and requires.startswith('config.'):
-					item = eval(requires or "")
-					if item.value and not item.value == "0":
-						SystemInfo[requires] = True
-					else:
-						SystemInfo[requires] = False
-
-				if requires and not SystemInfo.get(requires, False):
+				if requires:
+					if requires[0] == '!':
+						if SystemInfo.get(requires[1:], False):
+							continue
+					elif not SystemInfo.get(requires, False):
+						continue
+				conditional = x.get("conditional")
+				if conditional and not eval(conditional):
 					continue
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
