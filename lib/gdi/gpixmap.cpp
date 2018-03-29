@@ -29,6 +29,7 @@
 
 #ifdef GPIXMAP_DEBUG
 #	include "../base/benchmark.h"
+#endif
 
 #define ALPHA_TEST_MASK 0xFF000000
 
