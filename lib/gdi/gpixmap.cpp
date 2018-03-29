@@ -562,7 +562,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			if ((flag & blitAlphaTest) || ((flag & blitAlphaBlend) && !gAccel::getInstance()->hasAlphaBlendingSupport()))
 			{
 				accel = false;
-#ifndef FORCE_ALPHABLENDING_ACCELERATION
+#ifdef FORCE_ALPHABLENDING_ACCELERATION
 				accel = true;
 #endif
 			}
