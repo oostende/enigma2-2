@@ -4,17 +4,6 @@ from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 import os
 
-from boxbranding import getBoxType
-
-try:
-	file = open("/proc/stb/info/chipset", "r")
-	chipset = file.readline().strip()
-	file.close()
-	# convert chipset always to lowercase
-	chipset = chipset.lower()
-except:
-	chipset = "unknown"
-
 # The "VideoHardware" is the interface to /proc/stb/video.
 # It generates hotplug events, and gives you the list of
 # available and preferred modes, as well as handling the currently
@@ -40,36 +29,20 @@ class VideoHardware:
 
 	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
 
-	if chipset in ('bcm7358', 'bcm7346', 'bcm7356', 'bcm7405', 'bcm7362', 'bcm73625', 'bcm7252s'):
-		rates["720p"] =		{ "24Hz": 	{ 24: "720p24" },
-									"25Hz": 	{ 25: "720p25" },
-									"30Hz": 	{ 30: "720p30" },
-									"50Hz": 	{ 50: "720p50" },
-									"60Hz": 	{ 60: "720p" },
-									"multi": 	{ 50: "720p50", 60: "720p" },
-									"multi (50/60/24p)": {50: "720p50", 60: "720p", 24: "720p24" } }
-	else:
-		rates["720p"] =		{ "50Hz": 	{ 50: "720p50" },
-									"60Hz": 	{ 60: "720p" },
-									"multi": 	{ 50: "720p50", 60: "720p" },
-									"multi (50/60/24p)": {50: "720p50", 60: "720p", 24: "720p24" } }
+	rates["720p"] =			{ "50Hz": 	{ 50: "720p50" },
+								"60Hz": 	{ 60: "720p" },
+								"multi": 	{ 50: "720p50", 60: "720p" },
+								"multi (50/60/24p)": {50: "720p50", 60: "720p", 24: "720p24" } }
 
 	rates["1080i"] =		{ "50Hz":		{ 50: "1080i50" },
 									"60Hz": 	{ 60: "1080i" },
 									"multi": 	{ 50: "1080i50", 60: "1080i" },
 									"multi (50/60/24p)": {50: "1080i50", 60: "1080i", 24: "1080p24" } }
 
-	if chipset in ('bcm7405'):
-		rates["1080p"] =	{ "24Hz":		{ 24: "1080p24" },
-									"25Hz":		{ 25: "1080p25" },
-									"30Hz":		{ 30: "1080p30" },
-									"multi (50/60/24p)": {50: "1080p50", 60: "1080p", 24: "1080p24" } }
-
-	elif chipset in ('bcm7358', 'bcm7346', 'bcm7356', 'bcm7362', 'bcm73625', 'bcm7252s'):
-		rates["1080p"] =	{ "50Hz": 	{ 50: "1080p50" },
-									"60Hz": 	{ 60: "1080p" },
-									"multi": 	{ 50: "1080p50", 60: "1080p" },
-									"multi (50/60/24p)": {50: "1080p50", 60: "1080p", 24: "1080p24" } }
+	rates["1080p"] =		{ "50Hz":	{ 50: "1080p50" },
+								"60Hz":		{ 60: "1080p" },
+								"multi":	{ 50: "1080p50", 60: "1080p" },
+								"multi (50/60/24p)": {50: "1080p50", 60: "1080p", 24: "1080p24" } }
 
 	rates["2160p30"] =		{ "25Hz":	{ 50: "2160p25" },
 								"30Hz":		{ 60: "2160p30" },
@@ -96,26 +69,14 @@ class VideoHardware:
 		"1280x768": { 60: "1280x768" },
 		"640x480" : { 60: "640x480" } }
 
-	modes["Scart"] = ["PAL", "NTSC", "Multi"]
-
-	modes["DVI-PC"] = ["PC"]
-
-	if chipset in ('bcm7358', 'bcm7346', 'bcm7356', 'bcm7405', 'bcm7362', 'bcm73625'):
+	if SystemInfo["HasScart"]:
+		modes["Scart"] = ["PAL", "NTSC", "Multi"]
+	elif SystemInfo["HasComposite"]:
+		modes["RCA"] = ["576i", "PAL", "NTSC", "Multi"]
+	if SystemInfo["HasYPbPr"]:
 		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
-		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
-		widescreen_modes = set(["720p", "1080i", "1080p"])
-	elif chipset in ('bcm7252', 'bcm7251', 'bcm7251S', 'bcm7252s'):
-		modes["DVI"] = ["720p", "1080i", "1080p", "2160p", "2160p30", "576p", "480p", "576i", "480i"]
-		widescreen_modes = set(["720p", "1080i", "1080p", "2160p"])
-		del modes["Scart"]
-	else:
-		if SystemInfo["HasYPbPr"]:
-			modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
-		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
-		widescreen_modes = set(["720p", "1080i"])
-
-	if modes.has_key("YPbPr") and getBoxType() in ('gbipbox', 'gbx1', 'gbx2', 'gbx3', 'gbx3h','mutant51', 'ax51'):
-		del modes["YPbPr"]
+	modes["DVI"] = ["720p", "1080p", "2160p", "2160p30", "1080i", "576p", "480p", "576i", "480i"]
+	modes["DVI-PC"] = ["PC"]
 
 	def getOutputAspect(self):
 		ret = (16,9)
@@ -163,13 +124,10 @@ class VideoHardware:
 			del self.modes["Scart"]
 
 		self.createConfig()
-#		self.on_hotplug.append(self.createConfig)
-
 		self.readPreferredModes()
 
 		# take over old AVSwitch component :)
 		from Components.AVSwitch import AVSwitch
-#		config.av.colorformat.notifiers = [ ]
 		config.av.aspectratio.notifiers = [ ]
 		config.av.tvsystem.notifiers = [ ]
 		config.av.wss.notifiers = [ ]
@@ -179,11 +137,6 @@ class VideoHardware:
 		config.av.wss.addNotifier(self.updateAspect)
 		config.av.policy_169.addNotifier(self.updateAspect)
 		config.av.policy_43.addNotifier(self.updateAspect)
-
-		# until we have the hotplug poll socket
-#		self.timer = eTimer()
-#		self.timer.callback.append(self.readPreferredModes)
-#		self.timer.start(1000)
 
 	def readAvailableModes(self):
 		try:
@@ -218,11 +171,6 @@ class VideoHardware:
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
-			# DVI modes must be in "modes_preferred"
-#			if port == "DVI":
-#				if mode not in self.modes_preferred and not config.av.edid_override.value:
-#					print "no, not preferred"
-#					return False
 			if mode not in self.modes_available:
 				return False
 		return True
@@ -231,11 +179,7 @@ class VideoHardware:
 		return mode in self.widescreen_modes
 
 	def setMode(self, port, mode, rate, force = None):
-
 		print "[VideoHardware] setMode - port:", port, "mode:", mode, "rate:", rate
-
-		config.av.videoport.value = port		# [iq]
-
 		# we can ignore "port"
 		self.current_mode = mode
 		self.current_port = port
@@ -255,14 +199,8 @@ class VideoHardware:
 				mode_24 = mode_50
 
 		try:
-			mode_etc = None
-			if rate == "24Hz" or rate == "25Hz" or rate == "30Hz":
-				mode_etc = modes.get(int(rate[:2]))
-				open("/proc/stb/video/videomode", "w").write(mode_etc)
-			# not support 50Hz, 60Hz for 1080p
-			else:
-				open("/proc/stb/video/videomode_50hz", "w").write(mode_50)
-				open("/proc/stb/video/videomode_60hz", "w").write(mode_60)
+			open("/proc/stb/video/videomode_50hz", "w").write(mode_50)
+			open("/proc/stb/video/videomode_60hz", "w").write(mode_60)
 		except IOError:
 			try:
 				# fallback if no possibility to setup 50/60 hz mode
@@ -271,10 +209,7 @@ class VideoHardware:
 				print "[VideoHardware] setting videomode failed."
 
 		try:
-			if rate == "24Hz" or rate == "25Hz" or rate == "30Hz":
-				open("/etc/videomode", "w").write(mode_etc)
-			else:
-				open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
+			open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
 		except IOError:
 			print "[VideoHardware] writing initial videomode to /etc/videomode failed."
 
@@ -355,13 +290,6 @@ class VideoHardware:
 						ratelist.append((rate, rate))
 				config.av.videorate[mode] = ConfigSelection(choices = ratelist)
 		config.av.videoport = ConfigSelection(choices = lst)
-
-# tmtwin [
-		def setColorFormatAsPort(configElement):
-			if configElement.value == "YPbPr":
-				config.av.colorformat.value = "cvbs"
-		config.av.videoport.addNotifier(setColorFormatAsPort)
-# ]
 
 	def setConfiguredMode(self):
 		port = config.av.videoport.value

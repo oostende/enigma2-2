@@ -2,7 +2,7 @@ from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEna
 from enigma import eAVSwitch, getDesktop
 from SystemInfo import SystemInfo
 import os
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBuild
 
 class AVSwitch:
 	def setInput(self, input):
@@ -67,13 +67,17 @@ class AVSwitch:
 def InitAVSwitch():
 	config.av = ConfigSubsection()
 	config.av.yuvenabled = ConfigBoolean(default=True)
-	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
+	colorformat_choices = {"cvbs": _("CVBS")}
 
-	# when YUV is not enabled, don't let the user select it
-	if config.av.yuvenabled.value:
+	# when YUV, Scart or S-Video is not support by HW, don't let the user select it
+	if SystemInfo["HasYPbPr"]:
 		colorformat_choices["yuv"] = _("YPbPr")
+	if SystemInfo["HasScart"]:
+		colorformat_choices["rgb"] = _("RGB")
+	if SystemInfo["HasSVideo"]:
+		colorformat_choices["svideo"] = _("S-Video")
 
-	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
+	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="cvbs")
 	config.av.aspectratio = ConfigSelection(choices={
 			"4_3_letterbox": _("4:3 Letterbox"),
 			"4_3_panscan": _("4:3 PanScan"),
@@ -218,10 +222,11 @@ def InitAVSwitch():
 	config.av.wss.addNotifier(setWSS)
 
 	iAVSwitch.setInput("ENCODER") # init on startup
-	if getBoxType() in ('gbquad4k', 'gbue4k', 'gbquad', 'gbquadplus', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultraueh', 'gbultrase', 'spycat', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
-		detected = False
-	else:
+
+	if getMachineBuild() in ('gb7325'):
 		detected = eAVSwitch.getInstance().haveScartSwitch()
+	else:
+		detected = False
 
 	SystemInfo["ScartSwitch"] = detected
 
@@ -305,7 +310,7 @@ def InitAVSwitch():
 			except IOError:
 				print "couldn't write pep_scaler_sharpness"
 
-		if getBoxType() in ('gbquad4k', 'gbquad', 'gbquadplus'):
+		if getBoxType() in ('gbquad', 'gbquadplus'):
 			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
 		else:
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
