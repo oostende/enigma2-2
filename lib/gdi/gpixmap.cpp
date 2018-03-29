@@ -30,6 +30,8 @@
 #ifdef GPIXMAP_DEBUG
 #	include "../base/benchmark.h"
 
+#define ALPHA_TEST_MASK 0xFF000000
+
 /* #define GPIXMAP_CHECK_THRESHOLD */
 
 #ifdef GPIXMAP_CHECK_THRESHOLD
@@ -393,7 +395,7 @@ static inline void blit_8i_to_32_at(uint32_t *dst, const uint8_t *src, const uin
 {
 	while (width--)
 	{
-		if (!(pal[*src]&0x80000000))
+		if (!(pal[*src] & ALPHA_TEST_MASK))
 		{
 			src++;
 			dst++;
@@ -412,7 +414,7 @@ static inline void blit_8i_to_16_at(uint16_t *dst, const uint8_t *src, const uin
 {
 	while (width--)
 	{
-		if (!(pal[*src]&0x80000000))
+		if (!(pal[*src] & ALPHA_TEST_MASK))
 		{
 			src++;
 			dst++;
@@ -556,29 +558,13 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		}
 		if (accel)
 		{
-			/* we have hardware acceleration for this blit operation */
-			if (flag & (blitAlphaTest | blitAlphaBlend))
+			// blitAlphaTest can not be accelerated because it requires a conditional operation
+			if ((flag & blitAlphaTest) || ((flag & blitAlphaBlend) && !gAccel::getInstance()->hasAlphaBlendingSupport()))
 			{
-				/* alpha blending is requested */
-				if (gAccel::getInstance()->hasAlphaBlendingSupport())
-				{
+				accel = false;
 #ifndef FORCE_ALPHABLENDING_ACCELERATION
-					/* Hardware alpha blending is broken on the few
-					 * boxes that support it, so only use it
-					 * when scaling */
-					if (flag & blitScale)
-						accel = true;
-					else if (flag & blitAlphaTest) /* Alpha test only on 8-bit */
-						accel = (src.surface->bpp == 8);
-					else
-						accel = false;
+				accel = true;
 #endif
-				}
-				else
-				{
-					/* our hardware does not support alphablending */
-					accel = false;
-				}
 			}
 		}
 
@@ -629,7 +615,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 						for (int x = 0; x < width; ++x)
 						{
 							uint32_t pixel = pal[src_row_ptr[(x *src_width) / width]];
-							if (pixel & 0x80000000)
+							if (pixel & ALPHA_TEST_MASK)
 								*dst = pixel;
 							++dst;
 						}
@@ -683,7 +669,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 						for (int x = 0; x < width; ++x)
 						{
 							uint32_t pixel = src_row_ptr[(x *src_width) / width];
-							if (pixel & 0x80000000)
+							if (pixel & ALPHA_TEST_MASK)
 								*dst = pixel;
 							++dst;
 						}
@@ -795,12 +781,12 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					uint32_t *dst = dstptr;
 					while (width--)
 					{
-						if (!((*src)&0xFF000000))
+						if ((*src) & ALPHA_TEST_MASK)
 						{
-							++src;
-							++dst;
-						} else
-							*dst++=*src++;
+							*dst=*src;
+						}
+						++src;
+						++dst;
 					}
 				}
 				else if (flag & blitAlphaBlend)
@@ -900,7 +886,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 				{
 					while (width--)
 					{
-						if (!((*srcp)&0xFF000000))
+						if (!((*srcp) & ALPHA_TEST_MASK))
 						{
 							srcp++;
 							dstp++;
@@ -937,7 +923,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 				{
 					while (width--)
 					{
-						if (!((*srcp)&0xFF000000))
+						if (!((*srcp) & ALPHA_TEST_MASK))
 						{
 							++srcp;
 							++dstp;
