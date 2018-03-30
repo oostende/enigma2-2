@@ -225,7 +225,7 @@ void eDVBScan::stateChange(iDVBChannel *ch)
 							break;
 						}
 						}
-						m_ch_current = feparm;
+						m_ch_current = m_ch_blindscan_result = feparm;
 					}
 				}
 			}
@@ -304,6 +304,7 @@ RESULT eDVBScan::nextChannel()
 	}
 	else
 	{
+		m_ch_blindscan_result = NULL;
 		if (m_ch_toScan.empty())
 		{
 			SCAN_eDebug("[eDVBScan] no channels left: %zd scanned, %zd unavailable, %zd database.",
@@ -1206,6 +1207,7 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 		 *
 		 * For DVB-C, only one initial transponder has to be provided.
 		 * The frequency defines the start of the blindscan.
+		 * The symbolrate defines the frequency search range, in MHz (frequency / 1000000).
 		 *
 		 * For DVB-T, usually only one initial transponder has to be provided.
 		 * The frequency defines the start of the blindscan.
@@ -1730,7 +1732,12 @@ RESULT eDVBScan::getFrontend(ePtr<iDVBFrontend> &fe)
 
 RESULT eDVBScan::getCurrentTransponder(ePtr<iDVBFrontendParameters> &tp)
 {
-	if (m_ch_current)
+	if (m_ch_blindscan_result)
+	{
+		tp = m_ch_blindscan_result;
+		return 0;
+	}
+	else if (m_ch_current)
 	{
 		tp = m_ch_current;
 		return 0;

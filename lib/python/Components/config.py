@@ -1855,7 +1855,9 @@ class ConfigSubsection(object):
 			value.load()
 
 	def __getattr__(self, name):
-		return self.content.items[name]
+		if name in self.content.items:
+			return self.content.items[name]
+		raise AttributeError("Error: Attribute not defined!")
 
 	def getSavedValue(self):
 		res = self.content.stored_values
@@ -2122,3 +2124,15 @@ class ConfigCECAddress(ConfigSequence):
 	def getHTML(self, id):
 		# we definitely don't want leading zeros
 		return '.'.join(["%d" % d for d in self.value])
+
+class ConfigAction(ConfigElement):
+	def __init__(self, action, *args):
+		ConfigElement.__init__(self)
+		self.value = "(OK)"
+		self.action = action
+		self.actionargs = args
+	def handleKey(self, key):
+		if (key == KEY_OK):
+			self.action(*self.actionargs)
+	def getMulti(self, dummy):
+		pass
