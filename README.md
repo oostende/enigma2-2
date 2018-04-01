@@ -73,3 +73,9 @@
 
     MACHINE=gbquad4k DISTRO=teamblue make image
 
+
+Build Status - branch master: [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=master)](https://travis-ci.org/teamblue-e2/enigma2)
+
+Build Status - branch 6.1:    [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=6.1)](https://travis-ci.org/teamblue-e2/enigma2)
+
+Build Status - branch 6.2:    [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=6.2)](https://travis-ci.org/teamblue-e2/enigma2)
