@@ -315,7 +315,7 @@ class descriptionList(choicesList): # XXX: we might want a better name for this
 # all ids MUST be plain strings.
 #
 class ConfigSelection(ConfigElement):
-	def __init__(self, choices, default = None, graphic = False):
+	def __init__(self, choices, default = None):
 		ConfigElement.__init__(self)
 		self.choices = choicesList(choices)
 
