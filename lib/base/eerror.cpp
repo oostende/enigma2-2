@@ -278,7 +278,7 @@ void _eFatal(const char *file, int line, const char *function, const char* fmt, 
 			fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 	}
 	else
-		fprintf(stderr, obuf);
+		fputs(obuf, stderr);
 	bsodFatal("enigma2");
 	inNoNewLine = false;
 }
@@ -337,7 +337,7 @@ void _eDebug(const char *file, int line, const char *function, const char* fmt, 
 				fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 		}
 		else
-			fprintf(stderr, obuf);
+			fputs(obuf, stderr);
 	}
 	inNoNewLine = false;
 }
@@ -395,7 +395,7 @@ void _eDebugNoNewLineStart(const char *file, int line, const char *function, con
 				fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 		}
 		else
-			fprintf(stderr, obuf);
+			fputs(obuf, stderr);
 	}
 	inNoNewLine = true;
 }
@@ -528,7 +528,7 @@ void _eWarning(const char *file, int line, const char *function, const char* fmt
 				fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 		}
 		else
-			fprintf(stderr, obuf);
+			fputs(obuf, stderr);
 	}
 	inNoNewLine = false;
 }
@@ -610,7 +610,7 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 				fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 		}
 		else
-			fprintf(stderr, obuf);
+			fputs(obuf, stderr);
 	}
 	free(buf);
 	free(ncbuf);
