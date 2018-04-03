@@ -983,6 +983,7 @@ class InfoBarMenu:
 		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",
 			{
 				"mainMenu": (self.mainMenu, _("Enter main menu...")),
+				"showHDMIRecord": (self.showHDMiRecordSetup, _("Show HDMIRecord setup...")),
 			})
 		self.session.infobar = None
 
@@ -996,6 +997,10 @@ class InfoBarMenu:
 		# at the moment used from the SubserviceSelection
 
 		self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu)
+
+	def showHDMiRecordSetup(self):
+		if SystemInfo["HasHDMI-In"]:
+			self.session.openWithCallback(self.mainMenuClosed, Setup, 'HDMIRecord')
 
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
