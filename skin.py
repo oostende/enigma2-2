@@ -280,9 +280,9 @@ def loadPixmap(path, desktop):
 	if option != -1:
 		path = path[:option]
 	ptr = LoadPixmap(morphRcImagePath(path), desktop)
-	if ptr is None:
-		raise SkinError("pixmap file %s not found!" % path)
-	return ptr
+	if ptr is not None:
+		return ptr
+	print("pixmap file %s not found!" % path)
 
 class AttributeParser:
 	def __init__(self, guiObject, desktop, scale=((1,1),(1,1))):
