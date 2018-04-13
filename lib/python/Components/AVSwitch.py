@@ -1,5 +1,5 @@
 from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
-from enigma import eAVSwitch, getDesktop
+from enigma import eAVSwitch, eDVBVolumecontrol, getDesktop
 from SystemInfo import SystemInfo
 import os
 from boxbranding import getBoxType, getMachineBuild
@@ -93,105 +93,52 @@ def InitAVSwitch():
 			"16_10": _("16:10"),
 			"auto": _("Automatic")},
 			default = "auto")
-
- # Some boxes have a redundant proc entry for policy2 choices, but some don't (The choices are from a 16:9 point of view anyways)
-	if os.path.exists("/proc/stb/video/policy2_choices"):
-		policy2_choices_proc="/proc/stb/video/policy2_choices"
-	else:
-		policy2_choices_proc="/proc/stb/video/policy_choices"
-
+	policy2_choices = {
+	# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+	"letterbox": _("Letterbox"),
+	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+	"panscan": _("Pan&scan"),
+	# TRANSLATORS: (aspect ratio policy: scale as close to fullscreen as possible)
+	"scale": _("Just scale")}
 	try:
-		policy2_choices_raw=open(policy2_choices_proc, "r").read()
+		if "full" in open("/proc/stb/video/policy2_choices").read():
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if the content aspect ratio does not match the screen ratio)
+			policy2_choices.update({"full": _("Full screen")})
 	except:
-		policy2_choices_raw="letterbox"
-
-	policy2_choices = {}
-
-	if "letterbox" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
-		policy2_choices.update({"letterbox": _("Letterbox")})
-
-	if "panscan" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-		policy2_choices.update({"panscan": _("Pan&scan")})
-
-	if "nonliner" in policy2_choices_raw and not "nonlinear" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-		policy2_choices.update({"nonliner": _("Stretch nonlinear")})
-	if "nonlinear" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-		policy2_choices.update({"nonlinear": _("Stretch nonlinear")})
-
-	if "scale" in policy2_choices_raw and not "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: scale as close to fullscreen as possible)
-		policy2_choices.update({"scale": _("Stretch linear")})
-	if "full" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if the content aspect ratio does not match the screen ratio)
-		policy2_choices.update({"full": _("Full screen")})
-	if "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: automatically select the best aspect ratio mode)
-		policy2_choices.update({"auto": _("Stretch linear")})
-	if "bestfit" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
-		policy2_choices.update({"bestfit": _("Stretch linear")})
-
-	# print "AVSWITCH - policy2_choices: ", policy2_choices
+		pass
+	try:
+		if "auto" in open("/proc/stb/video/policy2_choices").read():
+			# TRANSLATORS: (aspect ratio policy: automatically select the best aspect ratio mode)
+			policy2_choices.update({"auto": _("Auto")})
+	except:
+		pass
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
-
-	policy_choices_proc="/proc/stb/video/policy_choices"
-
+	policy_choices = {
+	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+	"pillarbox": _("Pillarbox"),
+	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+	"panscan": _("Pan&scan"),
+	# TRANSLATORS: (aspect ratio policy: scale as close to fullscreen as possible)
+	"scale": _("Just scale")}
 	try:
-		policy_choices_raw=open(policy_choices_proc, "r").read()
+		if "nonlinear" in open("/proc/stb/video/policy_choices").read():
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+			policy_choices.update({"nonlinear": _("Nonlinear")})
 	except:
-		policy_choices_raw="panscan"
-
-	policy_choices = {}
-
-	if "pillarbox" in policy_choices_raw and not "panscan" in policy_choices_raw:
-		# Very few boxes support "pillarbox" as an alias for "panscan" (Which in fact does pillarbox)
-		# So only add "pillarbox" if "panscan" is not listed in choices
-
-		# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
-		policy_choices.update({"pillarbox": _("Pillarbox")})
-
-	if "panscan" in policy_choices_raw:
-		# DRIVER BUG:	"panscan" in /proc actually does "pillarbox" (That's probably why an alias to it named "pillarbox" existed)!
-		#		Interpret "panscan" setting with a "Pillarbox" text in order to show the correct value in GUI
-
-		# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
-		policy_choices.update({"panscan": _("Pillarbox")})
-
-	if "letterbox" in policy_choices_raw:
-		# DRIVER BUG:	"letterbox" in /proc actually does pan&scan
-		#		"letterbox" and 4:3 content on 16:9 TVs is mutually exclusive, as "letterbox" is the method to show wide content on narrow TVs
-		#		Probably the bug arose as the driver actually does the same here as it would for wide content on narrow TVs (It stretches the picture to fit width)
-
-		# TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
-		policy_choices.update({"letterbox": _("Pan&scan")})
-
-	if "nonliner" in policy_choices_raw and not "nonlinear" in policy_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
-		policy_choices.update({"nonliner": _("Stretch nonlinear")})
-	if "nonlinear" in policy_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
-		policy_choices.update({"nonlinear": _("Stretch nonlinear")})
-
-	# "auto", "bestfit" and "scale" are aliasses for the same: Stretch linear
-	if "scale" in policy_choices_raw and not "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: scale as close to fullscreen as possible)
-		policy_choices.update({"scale": _("Stretch linear")})
-	if "full" in policy_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if the content aspect ratio does not match the screen ratio)
-		policy_choices.update({"full": _("Full screen")})
-	if "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: automatically select the best aspect ratio mode)
-		policy_choices.update({"auto": _("Stretch linear")})
-	if "bestfit" in policy_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
-		policy_choices.update({"bestfit": _("Stretch linear")})
-
-	# print "AVSWITCH - policy_choices: ", policy_choices
-	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "letterbox")
+		pass
+	try:
+		if "full" in open("/proc/stb/video/policy_choices").read():
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if the content aspect ratio does not match the screen ratio)
+			policy_choices.update({"full": _("Full screen")})
+	except:
+		pass
+	try:
+		if "auto" in open("/proc/stb/video/policy_choices").read():
+			# TRANSLATORS: (aspect ratio policy: automatically select the best aspect ratio mode)
+			policy_choices.update({"auto": _("Auto")})
+	except:
+		pass
+	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "pillarbox")
 	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default = True)
 	config.av.generalAC3delay = ConfigSelectionNumber(-1000, 1000, 5, default = 0)
@@ -361,3 +308,8 @@ def InitAVSwitch():
 			open(SystemInfo["Has3DSurroundSoftLimiter"], "w").write(configElement.value and "enabled" or "disabled")
 		config.av.surround_softlimiter_3d = ConfigYesNo(default = False)
 		config.av.surround_softlimiter_3d.addNotifier(set3DSurroundSoftLimiter)
+
+	def setVolumeStepsize(configElement):
+		eDVBVolumecontrol.getInstance().setVolumeSteps(int(configElement.value))
+	config.av.volume_stepsize = ConfigSelectionNumber(1, 10, 1, default = 5)
+	config.av.volume_stepsize.addNotifier(setVolumeStepsize)
