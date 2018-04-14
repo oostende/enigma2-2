@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-24 16:08+0100\n"
+"POT-Creation-Date: 2018-04-15 01:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -660,7 +660,7 @@ msgid ""
 "your receiver. Shutdown now?"
 msgstr ""
 
-msgid "A graphical EPG for all services of an specific bouquet"
+msgid "A graphical EPG for all services of a specific bouquet"
 msgstr ""
 
 #, python-format
@@ -669,7 +669,7 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "A recording is currently running on the selected tuner. Please select a different tuner or consider to stop the recording to try again."
+msgid "A recording is currently running on the selected tuner. Please select a different tuner or stop the recording and try again."
 msgstr ""
 
 msgid ""
@@ -846,9 +846,6 @@ msgstr ""
 msgid "Adding schedule..."
 msgstr ""
 
-msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move the dish from one satellite to another satellite."
-msgstr ""
-
 msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move to another satellite."
 msgstr ""
 
@@ -936,7 +933,16 @@ msgstr ""
 msgid "Allocate unused memory index"
 msgstr ""
 
-msgid "Allow quit movieplayer with exit"
+msgid "Allow quitting movieplayer with exit"
+msgstr ""
+
+msgid "Also import at reboot/restart enigma2"
+msgstr ""
+
+msgid "Also import from the extension menu"
+msgstr ""
+
+msgid "Also import when box is leaving standby"
 msgstr ""
 
 msgid "Also on standby"
@@ -1143,6 +1149,7 @@ msgstr ""
 msgid "Authoring mode"
 msgstr ""
 
+#. TRANSLATORS: (aspect ratio policy: automatically select the best aspect ratio mode)
 msgid "Auto"
 msgstr ""
 
@@ -1171,9 +1178,6 @@ msgid "Automatic"
 msgstr ""
 
 msgid "Automatic Scan"
-msgstr ""
-
-msgid "Automatic scan"
 msgstr ""
 
 msgid "Autostart"
@@ -1388,9 +1392,6 @@ msgstr ""
 msgid "By teamBlue Image Team"
 msgstr ""
 
-msgid "Bypass HDMI EDID checking"
-msgstr ""
-
 msgid "C-Band"
 msgstr ""
 
@@ -1584,6 +1585,9 @@ msgstr ""
 msgid "Channel Info"
 msgstr ""
 
+msgid "Channel context menu"
+msgstr ""
+
 msgid "Channel list type"
 msgstr ""
 
@@ -1600,6 +1604,19 @@ msgid "Channelnumber and servicename"
 msgstr ""
 
 msgid "Channelnumber, picon and servicename"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+#, python-format
+msgid "Channels from fallback tuner failed %s"
+msgstr ""
+
+msgid "Channels from fallback tuner imported"
+msgstr ""
+
+msgid "Channels only"
 msgstr ""
 
 msgid "Chap."
@@ -1821,6 +1838,9 @@ msgstr ""
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+msgid "Configure to override HDMI EDID."
+msgstr ""
+
 msgid "Configure whether multi channel PCM sound should be enabled."
 msgstr ""
 
@@ -1830,10 +1850,10 @@ msgstr ""
 msgid "Configure which color format should be used on the SCART output."
 msgstr ""
 
-msgid "Configure your Cable settings and press OK to start the scan"
+msgid "Configure your internal LAN"
 msgstr ""
 
-msgid "Configure your internal LAN"
+msgid "Configure your network settings and press OK to scan"
 msgstr ""
 
 msgid "Configure your wireless LAN again"
@@ -2243,6 +2263,9 @@ msgstr ""
 msgid "Deselect"
 msgstr ""
 
+msgid "Destination of fallback remote receiver"
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr ""
 
@@ -2446,9 +2469,6 @@ msgstr ""
 msgid "Do you really want to unhold the plugin \"%s\"?"
 msgstr ""
 
-msgid "Do you see all the eight arrowheads?"
-msgstr ""
-
 msgid "Do you want this?"
 msgstr ""
 
@@ -2517,6 +2537,9 @@ msgid "Do you want to update your receiver?"
 msgstr ""
 
 msgid "Do you want to upgrade the package:\n"
+msgstr ""
+
+msgid "Dolby"
 msgstr ""
 
 msgid "Domain:"
@@ -2609,8 +2632,15 @@ msgstr ""
 msgid "EPG Cache Check"
 msgstr ""
 
+msgid "EPG only"
+msgstr ""
+
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
+msgstr ""
+
+#, python-format
+msgid "ERROR downloading file %s"
 msgstr ""
 
 msgid "East"
@@ -2692,10 +2722,16 @@ msgstr ""
 msgid "Enable auto fast scan for %s"
 msgstr ""
 
+msgid "Enable fallback remote receiver"
+msgstr ""
+
 msgid "Enable or disable Ipv6."
 msgstr ""
 
 msgid "Enable parental protection"
+msgstr ""
+
+msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power"
@@ -2758,7 +2794,13 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+msgid "Enter IP address"
+msgstr ""
+
 msgid "Enter PIN"
+msgstr ""
+
+msgid "Enter URL"
 msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
@@ -2812,6 +2854,10 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
+#, python-format
+msgid "Error %s"
+msgstr ""
+
 msgid "Error checking disk. The disk may be damaged"
 msgstr ""
 
@@ -2826,6 +2872,15 @@ msgstr ""
 
 #, python-format
 msgid "Error in file %s"
+msgstr ""
+
+msgid "Error when writing epg.dat on server"
+msgstr ""
+
+msgid "Error while retreiving epg.dat from server"
+msgstr ""
+
+msgid "Error while retreiving location of epg.dat on server"
 msgstr ""
 
 #, python-format
@@ -3016,6 +3071,12 @@ msgstr ""
 msgid "FTA"
 msgstr ""
 
+msgid ""
+"Factory reset will restore your receiver to its default configuration. All user data including system settings, tuner configuration, bouquets, services and plugins will be DELETED. Recordings and other files stored on HDD and USB media will remain intact. After completion, the system will restart automatically!\n"
+"\n"
+"Do you really want to proceed?"
+msgstr ""
+
 msgid "Fahrenheit"
 msgstr ""
 
@@ -3029,6 +3090,21 @@ msgid "Failed:"
 msgstr ""
 
 msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
+msgid "Fallback remote receiver"
+msgstr ""
+
+msgid "Fallback remote receiver IP"
+msgstr ""
+
+msgid "Fallback remote receiver Port"
+msgstr ""
+
+msgid "Fallback remote receiver URL"
+msgstr ""
+
+msgid "Fallback tuner setup"
 msgstr ""
 
 #, python-format
@@ -3234,6 +3310,10 @@ msgstr ""
 
 #, python-format
 msgid "Frontprocessor version: %s"
+msgstr ""
+
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if the content aspect ratio does not match the screen ratio)
+msgid "Full screen"
 msgstr ""
 
 msgid "Full transparency"
@@ -3477,6 +3557,18 @@ msgstr ""
 msgid "HDMI Colorspace"
 msgstr ""
 
+msgid "HDMI HDR Type"
+msgstr ""
+
+msgid "HDMI allow unsupported modes"
+msgstr ""
+
+msgid "HDMI bypass EDID checking"
+msgstr ""
+
+msgid "HDMI use pre-emphasis"
+msgstr ""
+
 msgid "HDMI-CEC"
 msgstr ""
 
@@ -3487,6 +3579,12 @@ msgid "HDMI-CEC Source Inactive"
 msgstr ""
 
 msgid "HDMI-CEC setup"
+msgstr ""
+
+msgid "HDR10"
+msgstr ""
+
+msgid "HLG"
 msgstr ""
 
 msgid "Haiti"
@@ -3601,7 +3699,7 @@ msgstr ""
 msgid "Hour"
 msgstr ""
 
-msgid "How many minutes do you want add to record?"
+msgid "How many minutes do you want add to the recording?"
 msgstr ""
 
 msgid "How many minutes do you want to record?"
@@ -3620,6 +3718,9 @@ msgid "IDLE"
 msgstr ""
 
 msgid "IP address"
+msgstr ""
+
+msgid "IP of fallback remote receiver"
 msgstr ""
 
 msgid "IP:"
@@ -3671,6 +3772,24 @@ msgid ""
 msgstr ""
 
 msgid "Ignore conflict"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr ""
+
+msgid "Import channels from fallback tuner"
+msgstr ""
+
+msgid "Import from remote receiver URL"
+msgstr ""
+
+msgid "Import remote receiver URL"
 msgstr ""
 
 msgid "In order to record a timer, the TV was switched to the recording service!\n"
@@ -3883,9 +4002,9 @@ msgid "It follows:"
 msgstr ""
 
 msgid ""
-"It seems you did not see all the eight arrow heads. This means your TV is has overscan enabled, and is not configured properly.\n"
+"It seems you did not see all the eight arrow heads. This means your TV has overscan enabled, and is not configured properly.\n"
 "\n"
-"Please refer to your TVs manual to find how you can disable overscan on your TV. Look for terms like 'Just fit', 'Full width', etc. If you can't find it, ask other users at http://forums.openpli.org.\n"
+"Please refer to your TV's manual to find how you can disable overscan on your TV. Look for terms like 'Just fit', 'Full width', etc. If you can't find it, ask other users at http://forums.openpli.org.\n"
 "\n"
 msgstr ""
 
@@ -3932,6 +4051,10 @@ msgid "Jump to next marked position"
 msgstr ""
 
 msgid "Jump to previous marked position"
+msgstr ""
+
+#. TRANSLATORS: (aspect ratio policy: scale as close to fullscreen as possible)
+msgid "Just scale"
 msgstr ""
 
 msgid "KA-SAT"
@@ -4203,6 +4326,9 @@ msgid "Madagascar"
 msgstr ""
 
 msgid "Main menu"
+msgstr ""
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
 msgstr ""
 
 msgid "Make this mark an 'in' point"
@@ -4502,6 +4628,9 @@ msgstr ""
 msgid "Movie location"
 msgstr ""
 
+msgid "Movie manager"
+msgstr ""
+
 msgid "Movie selection"
 msgstr ""
 
@@ -4748,6 +4877,9 @@ msgid ""
 "(Timeout reading PAT)"
 msgstr ""
 
+msgid "No data received yet"
+msgstr ""
+
 msgid "No delay"
 msgstr ""
 
@@ -4755,6 +4887,9 @@ msgid "No description available."
 msgstr ""
 
 msgid "No displayable files on this medium found!"
+msgstr ""
+
+msgid "No epg.dat file found server"
 msgstr ""
 
 msgid "No event info found, recording indefinitely."
@@ -4861,6 +4996,10 @@ msgstr ""
 msgid "None"
 msgstr ""
 
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+msgid "Nonlinear"
+msgstr ""
+
 msgid "Norfolk Island"
 msgstr ""
 
@@ -4919,6 +5058,9 @@ msgstr ""
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
+msgstr ""
+
+msgid "Nothing to scan! Setup your tuner and try again."
 msgstr ""
 
 msgid "Nothing to upgrade"
@@ -5148,7 +5290,6 @@ msgid "Palestine, State of"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
 msgid "Pan&scan"
 msgstr ""
 
@@ -5194,7 +5335,7 @@ msgstr ""
 msgid "Pause playback"
 msgstr ""
 
-msgid "Pauze/Continue playback"
+msgid "Pause/Continue playback"
 msgstr ""
 
 msgid "Percentage left"
@@ -5478,6 +5619,9 @@ msgstr ""
 msgid "Port D"
 msgstr ""
 
+msgid "Port of fallback remote receiver"
+msgstr ""
+
 msgid "Portugal"
 msgstr ""
 
@@ -5567,9 +5711,6 @@ msgid "Press OK to select/deselect a CAId."
 msgstr ""
 
 msgid "Press OK to set the MAC-adress."
-msgstr ""
-
-msgid "Press OK to start the scan"
 msgstr ""
 
 msgid "Press OK to toggle the selection"
@@ -5857,6 +5998,9 @@ msgid "Region"
 msgstr ""
 
 msgid "Relative"
+msgstr ""
+
+msgid "Relevant PIDs routing"
 msgstr ""
 
 msgid "Reload"
@@ -6147,6 +6291,9 @@ msgstr ""
 msgid "SCR Unicable"
 msgstr ""
 
+msgid "SDR"
+msgstr ""
+
 msgid "SINGLE LAYER DVD"
 msgstr ""
 
@@ -6202,6 +6349,9 @@ msgid "Samba Log"
 msgstr ""
 
 msgid "Samba Setup"
+msgstr ""
+
+msgid "Same as stream"
 msgstr ""
 
 msgid "Same resolution as skin"
@@ -6304,10 +6454,22 @@ msgstr ""
 msgid "Scan additional SR"
 msgstr ""
 
+#, python-format
+msgid "Scan completed, %d channel found."
+msgid_plural "Scan completed, %d channels found."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Scan failed!"
+msgstr ""
+
 msgid "Scan files..."
 msgstr ""
 
 msgid "Scan options"
+msgstr ""
+
+msgid "Scan state"
 msgstr ""
 
 msgid "Scan wireless networks"
@@ -6374,6 +6536,9 @@ msgid "Sectors: %s (max) %s (current)"
 msgstr ""
 
 msgid "Sectors: unknown"
+msgstr ""
+
+msgid "Seek"
 msgstr ""
 
 msgid "Seek backward"
@@ -6506,6 +6671,9 @@ msgid "Select files/folders to backup"
 msgstr ""
 
 msgid "Select function"
+msgstr ""
+
+msgid "Select hard disk"
 msgstr ""
 
 msgid "Select horizontal resolution:"
@@ -6812,6 +6980,9 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
+msgid "Setup hard disk"
+msgstr ""
+
 msgid "Setup menu"
 msgstr ""
 
@@ -6852,6 +7023,9 @@ msgid "Show EPG..."
 msgstr ""
 
 msgid "Show Games show"
+msgstr ""
+
+msgid "Show HDMIRecord setup..."
 msgstr ""
 
 msgid "Show InfoBar"
@@ -6927,6 +7101,18 @@ msgid "Show multi channel EPG"
 msgstr ""
 
 msgid "Show new Packages"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr ""
+
+msgid "Show notification when import channels was not successful"
+msgstr ""
+
+msgid "Show notification when import channels was successful"
 msgstr ""
 
 msgid "Show only found image and mtd partitions.\n"
@@ -7167,7 +7353,7 @@ msgstr ""
 msgid "Somalia"
 msgstr ""
 
-msgid "Some error occured - Please try later"
+msgid "Some error occurred - Please try later"
 msgstr ""
 
 msgid "Some plugins are not available:\n"
@@ -7464,15 +7650,6 @@ msgid "Stream request"
 msgstr ""
 
 msgid "Streaming clients info"
-msgstr ""
-
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
-msgid "Stretch linear"
-msgstr ""
-
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
-msgid "Stretch nonlinear"
 msgstr ""
 
 msgid "Stripes"
@@ -7776,7 +7953,7 @@ msgid ""
 "The yellow area means a 5% border area of a full HD picture will be invisible.\n"
 "The green area means a 10% border area of a full HD picture will be invisible.\n"
 "\n"
-"In other words, if the yellow box meets all for sides of your screen, then you have at least 5% overscan on all sides.\n"
+"In other words, if the yellow box touches all four sides of your screen, you have at least 5% overscan on all sides.\n"
 "\n"
 "If you see the tips of all eight arrowheads, then your TV has overscan disabled.\n"
 "\n"
@@ -7926,12 +8103,6 @@ msgstr ""
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
-msgid "This option allows you can config the Colordepth for UHD"
-msgstr ""
-
-msgid "This option allows you can config the Colorimetry for HDR."
-msgstr ""
-
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr ""
 
@@ -7947,6 +8118,18 @@ msgstr ""
 msgid "This option allows you to change the virtuell loadspeaker position."
 msgstr ""
 
+msgid "This option allows you to configure the Colordepth for UHD"
+msgstr ""
+
+msgid "This option allows you to configure the Colorimetry for HDR."
+msgstr ""
+
+msgid "This option allows you to configure the Colorspace from Auto to RGB"
+msgstr ""
+
+msgid "This option allows you to configure the HDR type."
+msgstr ""
+
 msgid "This option allows you to disable or change the virtuell loadspeaker position."
 msgstr ""
 
@@ -7954,9 +8137,6 @@ msgid "This option allows you to enable 3D surround softlimiter."
 msgstr ""
 
 msgid "This option allows you to enable 3D surround sound."
-msgstr ""
-
-msgid "This option allows you to set the Colorspace of HDMI from Auto to RGB"
 msgstr ""
 
 msgid "This option allows you to view the old and new settings side by side."
@@ -7968,7 +8148,7 @@ msgstr ""
 msgid "This option configures you can set auto volume level."
 msgstr ""
 
-msgid "This option set the level of surpression of musquito noise (Musquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
+msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
 
 msgid "This option sets  the picture contrast."
@@ -8048,7 +8228,7 @@ msgid ""
 "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN adapter is configured for manual IP setup\n"
-"- verify thay you have entered correct IP informations in the adapter setup dialog.\n"
+"- verify thay you have entered the correct IP information in the adapter setup dialog.\n"
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP server in your network."
 msgstr ""
@@ -8331,6 +8511,9 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
+msgid "Type of LNB/device"
+msgstr ""
+
 msgid "Type of scan"
 msgstr ""
 
@@ -8338,6 +8521,9 @@ msgid "UNKNOWN"
 msgstr ""
 
 msgid "URL"
+msgstr ""
+
+msgid "URL of fallback remote receiver"
 msgstr ""
 
 msgid "USALS"
@@ -8495,9 +8681,6 @@ msgid "Use"
 msgstr ""
 
 msgid "Use DHCP"
-msgstr ""
-
-msgid "Use HDMI pre-emphasis"
 msgstr ""
 
 msgid "Use TV remote control"
@@ -8857,10 +9040,10 @@ msgstr ""
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
 msgstr ""
 
-msgid "When enabled you can specify a timeframe were the inactivity sleeptimer is ignored. Not the detection is disabled during this timeframe but the inactivity timeout is disabled"
+msgid "When enabled you can specify a timeframe when the inactivity sleeptimer is ignored. Not the detection is disabled during this timeframe but the inactivity timeout is disabled"
 msgstr ""
 
-msgid "When enabled you can specify an extra timeframe were the inactivity sleeptimer is ignored. Not the detection is disabled during this timeframe but the inactivity timeout is disabled"
+msgid "When enabled you can specify an extra timeframe when the inactivity sleeptimer is ignored. Not the detection is disabled during this timeframe but the inactivity timeout is disabled"
 msgstr ""
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
@@ -8873,14 +9056,6 @@ msgid "When the content has an aspect ratio of 16:9, choose whether to scale/str
 msgstr ""
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
-msgstr ""
-
-msgid ""
-"When you do a factory reset, you will lose ALL your configuration data\n"
-"(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your receiver will restart automatically!\n"
-"\n"
-"Really do a factory reset?"
 msgstr ""
 
 msgid "Where to save temporary timeshift recordings?"
@@ -9042,7 +9217,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"You did not see all eight arrow heads. This means your TV has overscan enabled and presents you with a zoomed-in picture, causing you to loose part of a full HD screen. In addition this you may also miss parts of the user interface, for example volume bars and more.\n"
+"You did not see all eight arrow heads. This means your TV has overscan enabled and presents you with a zoomed-in picture, causing you to loose part of a full HD screen. In addition to this you may also miss parts of the user interface, for example volume bars and more.\n"
 "\n"
 "You can now try to resize and change the position of the user interface until you see the eight arrow heads.\n"
 "\n"
@@ -9355,7 +9530,7 @@ msgstr ""
 msgid "always"
 msgstr ""
 
-msgid "and never ask again this session again"
+msgid "and never ask in this session again"
 msgstr ""
 
 msgid "and never ask this again"
@@ -10551,6 +10726,9 @@ msgstr ""
 msgid "Timeshift"
 msgstr ""
 
+msgid "Automatic scan"
+msgstr ""
+
 msgid "CAM/CI"
 msgstr ""
 
@@ -10567,6 +10745,9 @@ msgid "Convert ext3 filesystem to ext4"
 msgstr ""
 
 msgid "Factory reset"
+msgstr ""
+
+msgid "Fallback remote receiver setup"
 msgstr ""
 
 msgid "Filesystem check"
@@ -10761,12 +10942,6 @@ msgstr ""
 msgid "Reception settings"
 msgstr ""
 
-msgid "Satfinder"
-msgstr ""
-
-msgid "Seek"
-msgstr ""
-
 msgid "Select HDD"
 msgstr ""
 
@@ -10780,6 +10955,9 @@ msgid "Select a skin"
 msgstr ""
 
 msgid "Select a tuner"
+msgstr ""
+
+msgid "Signal finder"
 msgstr ""
 
 msgid "Timer edit"
@@ -10978,6 +11156,9 @@ msgid "Behavior when a movie is started"
 msgstr ""
 
 msgid "Behavior when a movie is stopped"
+msgstr ""
+
+msgid "Bitrate"
 msgstr ""
 
 msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
@@ -11250,10 +11431,10 @@ msgstr ""
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
 msgstr ""
 
-msgid "Configure whether or not an icon should be shown when your motorized dish is moving."
+msgid "Configure whether or not a rotor position will be displayed on the infobar"
 msgstr ""
 
-msgid "Configure whether or not an rotor position will be displayed on infobar"
+msgid "Configure whether or not an icon should be shown when your motorized dish is moving."
 msgstr ""
 
 msgid "Configure which access level to use for the configuration menu. Expert level gives access to all items."
@@ -11262,7 +11443,7 @@ msgstr ""
 msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
 msgstr ""
 
-msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners. Choose 'no priority' to try each alternative one by one independent from tuner type."
+msgid "Configure which tuner type will be preferred when the same service is available on different types of tuners. Choose 'no priority' to try each alternative one by one regardless of the tuner type."
 msgstr ""
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
@@ -11379,9 +11560,6 @@ msgstr ""
 msgid "Enable debug log"
 msgstr ""
 
-msgid "Enable fallback remote receiver"
-msgstr ""
-
 msgid "Enable freesat EPG"
 msgstr ""
 
@@ -11391,13 +11569,13 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr ""
 
-msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
-msgstr ""
-
 msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
+msgstr ""
+
+msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
 msgstr ""
 
 msgid "Enable volume control with arrow buttons"
@@ -11418,9 +11596,6 @@ msgstr ""
 msgid "Fade the Infobar on hide"
 msgstr ""
 
-msgid "Fallback remote receiver URL"
-msgstr ""
-
 msgid "Fan operation"
 msgstr ""
 
@@ -11436,6 +11611,12 @@ msgstr ""
 msgid "Finetune"
 msgstr ""
 
+msgid "Frame rate"
+msgstr ""
+
+msgid "HDMI Recording"
+msgstr ""
+
 msgid "HI-cleanup for external subtitles"
 msgstr ""
 
@@ -11443,6 +11624,9 @@ msgid "Hard disk setup"
 msgstr ""
 
 msgid "Hard disk standby after"
+msgstr ""
+
+msgid "Height"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -11467,6 +11651,9 @@ msgid "Ignore DVB-S namespace sub network"
 msgstr ""
 
 msgid "Ignore DVB-T namespace sub network"
+msgstr ""
+
+msgid "In most cases this should be set to No. Only enable if you have a very specific need."
 msgstr ""
 
 msgid "Include AIT in http streams"
@@ -11497,6 +11684,9 @@ msgid "Initial rewind speed"
 msgstr ""
 
 msgid "Initial scroll delay"
+msgstr ""
+
+msgid "Interlaced"
 msgstr ""
 
 msgid "Keyboard map"
@@ -11712,6 +11902,9 @@ msgstr ""
 msgid "Show SNR percentage instead of dB value"
 msgstr ""
 
+msgid "Show True/False as graphical switch"
+msgstr ""
+
 msgid "Show VCR scart on main menu"
 msgstr ""
 
@@ -11877,19 +12070,34 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The aspect ratio of the recording."
+msgstr ""
+
+msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
+msgstr ""
+
+msgid "The frame rate of the recording. Ideally, this will match the frame rate of the source or be an integer multiple. If in doubt, set to 60, which should work with most sources."
+msgstr ""
+
+msgid "The height of the picture. The input will be scaled to match this value."
+msgstr ""
+
 msgid "The stored EPG data will be read every (hours)"
 msgstr ""
 
-msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
+msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
 
-msgid "This option allows you show all symbols on display."
+msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
 
 msgid "This option allows you to hide and sort menu entries. When selecting user you can change order and hide menu items via the blue button"
 msgstr ""
 
 msgid "This option allows you to power off the display."
+msgstr ""
+
+msgid "This option allows you to show all symbols on the display."
 msgstr ""
 
 msgid "This option allows you to show menu number quick links."
@@ -11905,9 +12113,6 @@ msgid "Tuner slot"
 msgstr ""
 
 msgid "Turn on the power LED during standby."
-msgstr ""
-
-msgid "URL of fallback remote receiver"
 msgstr ""
 
 msgid "Use 12 characters display mode"
@@ -12045,7 +12250,7 @@ msgstr ""
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr ""
 
-msgid "When enabled, number markers will be hiden."
+msgid "When enabled, number markers will be hidden."
 msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
@@ -12118,6 +12323,9 @@ msgid "When nonzero, a recording will start earlier than the starting time indic
 msgstr ""
 
 msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgstr ""
+
+msgid "Width"
 msgstr ""
 
 msgid "Yellow DVB subtitles"
