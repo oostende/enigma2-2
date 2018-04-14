@@ -1,5 +1,5 @@
 from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
-from enigma import eAVSwitch, eDVBVolumecontrol, getDesktop
+from enigma import eAVSwitch, getDesktop
 from SystemInfo import SystemInfo
 import os
 from boxbranding import getBoxType, getMachineBuild
@@ -307,7 +307,3 @@ def InitAVSwitch():
 		config.av.surround_softlimiter_3d = ConfigYesNo(default = False)
 		config.av.surround_softlimiter_3d.addNotifier(set3DSurroundSoftLimiter)
 
-	def setVolumeStepsize(configElement):
-		eDVBVolumecontrol.getInstance().setVolumeSteps(int(configElement.value))
-	config.av.volume_stepsize = ConfigSelectionNumber(1, 10, 1, default = 5)
-	config.av.volume_stepsize.addNotifier(setVolumeStepsize)
