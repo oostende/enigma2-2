@@ -265,8 +265,6 @@ def InitAVSwitch():
 	else:
 		config.av.scaler_sharpness = NoSave(ConfigNothing())
 
-	config.av.edid_override = ConfigYesNo(default = True)
-
 	if SystemInfo["HasMultichannelPCM"]:
 		def setMultichannelPCM(configElement):
 			open(SystemInfo["HasMultichannelPCM"], "w").write(configElement.value and "enable" or "disable")
