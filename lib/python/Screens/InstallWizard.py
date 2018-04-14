@@ -45,7 +45,7 @@ class InstallWizard(Screen, ConfigListScreen):
 			if is_found is False:
 				self.createMenu()
 		elif self.index == self.STATE_CHOICE_CHANNELLIST:
-			self.enabled = ConfigYesNo(default = True)
+			self.enabled = ConfigYesNo(default = True, graphic = False)
 			modes = {
 								"19e": "Astra 19.2e",
 								"19e-13e": "Astra 19.2e Hotbird 13.0e",
