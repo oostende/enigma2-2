@@ -90,8 +90,6 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		if config.av.videoport.value == "DVI":
 			if level >= 1:
-				if SystemInfo["HasBypassEdidChecking"]:
-					self.list.append(getConfigListEntry(_("HDMI bypass EDID checking"), config.av.bypassEdidChecking, _("Configure if the HDMI EDID checking should be bypassed as this might solve issue with some TVs.")))
 				if SystemInfo["HasColorspace"]:
 					self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace, _("This option allows you to configure the Colorspace from Auto to RGB")))
 				if SystemInfo["HasColordepth"]:
@@ -102,7 +100,9 @@ class VideoSetup(Screen, ConfigListScreen):
 					self.list.append(getConfigListEntry(_("HDMI HDR Type"), config.av.hdmihdrtype, _("This option allows you to configure the HDR type.")))
 				if SystemInfo["HasHDMIpreemphasis"]:
 					self.list.append(getConfigListEntry(_("HDMI use pre-emphasis"), config.av.hdmipreemphasis, _("This option can be useful for long HDMI cables.")))
-				self.list.append(getConfigListEntry(_("HDMI allow unsupported modes"), config.av.edid_override, _("Configure to override HDMI EDID.")))
+				if SystemInfo["HasBypassEdidChecking"]:
+					self.list.append(getConfigListEntry(_("HDMI bypass EDID checking"), config.av.bypassEdidChecking, _("Configure if the HDMI EDID checking should be bypassed as this might solve issue with some TVs.")))
+				self.list.append(getConfigListEntry(_("HDMI allow unsupported modes"), config.av.edid_override, _("This option allows to select video modes even if they are not reported as supported from HDMI-EDID.")))
 
 		if config.av.videoport.value == "Scart":
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
