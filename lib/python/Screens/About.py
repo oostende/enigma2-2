@@ -206,7 +206,7 @@ class About(Screen):
 		self["key_red"] = Button(_("Latest Commits"))
 		self["key_yellow"] = Button(_("Troubleshoot"))
 		self["key_blue"] = Button(_("Memory Info"))
-		self["key_info"] = Button(_("Contact Info"))
+		self["key_info"] = StaticText(_("Contact Info"))
 		self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions"],
 			{
 				"cancel": self.close,
