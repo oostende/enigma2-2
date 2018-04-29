@@ -2,11 +2,7 @@ from enigma import eActionMap
 from Tools.KeyBindings import queryKeyBinding
 
 class ActionMap:
-	def __init__(self, contexts=None, actions=None, prio=0):
-		if not actions:
-			actions = {}
-		if not contexts:
-			contexts = []
+	def __init__(self, contexts=[], actions={}, prio=0):
 		self.actions = actions
 		self.contexts = contexts
 		self.prio = prio
@@ -84,10 +80,8 @@ class HelpableActionMap(ActionMap):
 	# added to the screen's "helpList", which will be picked up by
 	# the "HelpableScreen".
 
-	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
+	def __init__(self, parent, contexts, actions={}, prio=0, description=None):
 		self.description = description
-		if not actions:
-			actions = {}
 		if not hasattr(contexts, '__iter__'):
 			contexts = [contexts]
 		adict = {}
@@ -109,10 +103,9 @@ class HelpableActionMap(ActionMap):
 
 
 class HelpableNumberActionMap(NumberActionMap, HelpableActionMap):
-	"""An Actionmap which automatically puts the actions into the helpList.
-
-	A context list is allowed, and for backward compatibility,
-	a single string context name also is allowed"""
+	# An Actionmap which automatically puts the actions into the helpList.
+	# A context list is allowed, and for backward compatibility,
+	# a single string context name also is allowed
 
 	# sorry for this complicated code.
 	# it's not more than converting a "documented" actionmap
