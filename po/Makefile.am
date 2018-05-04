@@ -19,8 +19,6 @@ enigma2.pot: enigma2-py.pot enigma2-xml.pot
 	sed --in-place enigma2-py.pot --expression=s/CHARSET/UTF-8/
 	sed --in-place enigma2-xml.pot --expression=s/CHARSET/UTF-8/
 	cat $^ | $(MSGUNIQ) --no-wrap --no-location -o $@ -
-	mkdir -p $(TOPDIR)/po/
-	cp -p enigma2.pot $(TOPDIR)/po/enigma2.pot
 
 %.po: enigma2.pot
 	if [ -f $@ ]; then \
@@ -43,7 +41,6 @@ install-data-local: $(LANGMO)
 	for lang in $(LANGS); do \
 		$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES; \
 		$(INSTALL_DATA) $$lang.po $(DESTDIR)$(pkgdatadir)/po/@PACKAGE_NAME@-$$lang.po; \
-		cp -p $$lang.po $(TOPDIR)/po/$$lang.po
 		$(INSTALL_DATA) $$lang.mo $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES/@PACKAGE_NAME@.mo; \
 	done
 
