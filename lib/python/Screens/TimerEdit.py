@@ -13,8 +13,11 @@ from Screens.InputBox import PinInput
 from ServiceReference import ServiceReference
 from TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
+from Tools.FallbackTimer import FallbackTimerList
 from time import time
 from timer import TimerEntry as RealTimerEntry
+from ServiceReference import ServiceReference
+from enigma import eServiceReference
 
 class TimerEditList(Screen):
 	EMPTY = 0
@@ -28,8 +31,7 @@ class TimerEditList(Screen):
 
 		list = [ ]
 		self.list = list
-		self.fillTimerList()
-
+		self.url = None
 		self["timerlist"] = TimerList(list)
 
 		self.key_red_choice = self.EMPTY
@@ -55,6 +57,9 @@ class TimerEditList(Screen):
 				"down": self.down
 			}, -1)
 		self.setTitle(_("Timer overview"))
+
+		self.fillTimerList()
+
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		self.onShown.append(self.updateState)
 		if self.isProtected() and config.ParentalControl.servicepin[0].value:
@@ -93,40 +98,42 @@ class TimerEditList(Screen):
 		timer_changed = True
 		if cur:
 			t = cur
-			stateRunning = t.state in (1, 2)
-			if t.disabled and t.repeated and stateRunning and not t.justplay:
-				return
-			if t.disabled:
-				print "[TimerEditList] try to ENABLE timer"
-				t.enable()
-				timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, cur)
-				if not timersanitycheck.check():
-					t.disable()
-					print "[TimerEditList] sanity check failed"
-					simulTimerList = timersanitycheck.getSimulTimerList()
-					if simulTimerList is not None:
-						self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, simulTimerList)
-						timer_changed = False
-				else:
-					print "[TimerEditList] sanity check passed"
-					if timersanitycheck.doubleCheck():
-						t.disable()
+			if t.external:
+				self.fallbackTimer.toggleTimer(t, self.refill)
 			else:
-				if stateRunning:
-					if t.isRunning() and t.repeated:
-						list = (
-							(_("Stop current event but not coming events"), "stoponlycurrent"),
-							(_("Stop current event and disable coming events"), "stopall"),
-							(_("Don't stop current event but disable coming events"), "stoponlycoming")
-						)
-						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
-						timer_changed = False
+				stateRunning = t.state in (1, 2)
+				if t.disabled and t.repeated and stateRunning and not t.justplay:
+					return
+				if t.disabled:
+					print "[TimerEditList] try to ENABLE timer"
+					t.enable()
+					timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, cur)
+					if not timersanitycheck.check():
+						t.disable()
+						print "[TimerEditList] sanity check failed"
+						simulTimerList = timersanitycheck.getSimulTimerList()
+						if simulTimerList is not None:
+							self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, simulTimerList)
+							timer_changed = False
+					else:
+						print "[TimerEditList] sanity check passed"
+						if timersanitycheck.doubleCheck():
+							t.disable()
 				else:
-					t.disable()
-			if timer_changed:
-				self.session.nav.RecordTimer.timeChanged(t)
+					if stateRunning:
+						if t.isRunning() and t.repeated:
+							list = (
+								(_("Stop current event but not coming events"), "stoponlycurrent"),
+								(_("Stop current event and disable coming events"), "stopall"),
+								(_("Don't stop current event but disable coming events"), "stoponlycoming")
+							)
+							self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
+							timer_changed = False
+					else:
+						t.disable()
+				if timer_changed:
+					self.session.nav.RecordTimer.timeChanged(t)
 			self.refill()
-			self.updateState()
 
 	def runningEventCallback(self, t, result):
 		if result is not None and t.isRunning():
@@ -142,7 +149,6 @@ class TimerEditList(Screen):
 			self.session.nav.RecordTimer.timeChanged(t)
 			t.findRunningEvent = findNextRunningEvent
 			self.refill()
-			self.updateState()
 
 	def removeAction(self, descr):
 		actions = self["actions"].actions
@@ -207,20 +213,30 @@ class TimerEditList(Screen):
 			self.key_blue_choice = self.EMPTY
 
 	def fillTimerList(self):
-		#helper function to move finished timers to end of list
+		self.fallbackTimer = FallbackTimerList()
+		self.fallbackTimer.getFallbackTimerList(self.createTimerList)
+
+	def createTimerList(self, answer, message):
+		if answer:
+			self.list = self.fallbackTimer.list
+		else:
+			self.list = []
+			print "[TimerEdit] Something went wrong while fetching fallback timer", message
+
 		def eol_compare(x, y):
 			if x[0].state != y[0].state and x[0].state == RealTimerEntry.StateEnded or y[0].state == RealTimerEntry.StateEnded:
 				return cmp(x[0].state, y[0].state)
 			return cmp(x[0].begin, y[0].begin)
 
-		list = self.list
-		del list[:]
-		list.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
-		list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
+		self.list.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
+		self.list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
+
 		if config.usage.timerlist_finished_timer_position.index: #end of list
-			list.sort(cmp = eol_compare)
+			self.list.sort(cmp = eol_compare)
 		else:
-			list.sort(key = lambda x: x[0].begin)
+			self.list.sort(key = lambda x: x[0].begin)
+		self["timerlist"].l.setList(self.list)
+		self.updateState()
 
 	def showLog(self):
 		cur=self["timerlist"].getCurrent()
@@ -230,7 +246,7 @@ class TimerEditList(Screen):
 	def openEdit(self):
 		cur=self["timerlist"].getCurrent()
 		if cur:
-			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur)
+			self.session.openWithCallback(boundFunction(self.finishedEdit, cur.service_ref, cur.begin, cur.end), TimerEntry, cur, True)
 
 	def cleanupQuestion(self):
 		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete done timers?"))
@@ -238,39 +254,40 @@ class TimerEditList(Screen):
 	def cleanupTimer(self, delete):
 		if delete:
 			self.session.nav.RecordTimer.cleanup()
-			self.refill()
-			self.updateState()
+			self.fallbackTimer.cleanupTimers(self.refill)
 
 	def removeTimerQuestion(self):
 		cur = self["timerlist"].getCurrent()
-		if not cur:
-			return
-
-		self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (cur.name))
+		if cur:
+			self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (cur.name))
 
 	def removeTimer(self, result):
-		if not result:
-			return
-		list = self["timerlist"]
-		cur = list.getCurrent()
-		if cur:
-			timer = cur
-			timer.afterEvent = AFTEREVENT.NONE
-			self.session.nav.RecordTimer.removeEntry(timer)
-			self.refill()
+		if result:
+			cur = self["timerlist"].getCurrent()
+			if cur:
+				print cur
+				if cur.external:
+					self.fallbackTimer.removeTimer(cur, self.refill)
+				else:
+					timer = cur
+					timer.afterEvent = AFTEREVENT.NONE
+					self.session.nav.RecordTimer.removeEntry(timer)
+					self.refill()
+
+	def refill(self, answer=True, message=""):
+		if answer:
+			oldsize = len(self.list)
+			self.fillTimerList()
+			lst = self["timerlist"]
+			newsize = len(self.list)
+			if oldsize and oldsize != newsize:
+				idx = lst.getCurrentIndex()
+				lst.entryRemoved(idx)
+			else:
+				lst.invalidate()
 			self.updateState()
-
-
-	def refill(self):
-		oldsize = len(self.list)
-		self.fillTimerList()
-		lst = self["timerlist"]
-		newsize = len(self.list)
-		if oldsize and oldsize != newsize:
-			idx = lst.getCurrentIndex()
-			lst.entryRemoved(idx)
 		else:
-			lst.invalidate()
+			print "[TimerEdit] Error fetching fallback timer", message
 
 	def addCurrentTimer(self):
 		event = None
@@ -293,54 +310,50 @@ class TimerEditList(Screen):
 	def addTimer(self, timer):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
 
-
-	def finishedEdit(self, answer):
+	def finishedEdit(self, service_ref, begin, end, answer):
 		print "[TimerEditList] finished edit"
-
 		if answer[0]:
-			print "[TimerEditList] edited timer"
 			entry = answer[1]
-			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
-			success = False
-			if not timersanitycheck.check():
-				simulTimerList = timersanitycheck.getSimulTimerList()
-				if simulTimerList is not None:
-					for x in simulTimerList:
-						if x.setAutoincreaseEnd(entry):
-							self.session.nav.RecordTimer.timeChanged(x)
-					if not timersanitycheck.check():
-						simulTimerList = timersanitycheck.getSimulTimerList()
-						if simulTimerList is not None:
-							self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
-					else:
-						success = True
+			if entry.external:
+				self.fallbackTimer.editTimer(service_ref, begin, end, entry, self.refill)
 			else:
-				success = True
-			if success:
-				print "[TimerEditList] sanity check passed"
-				self.session.nav.RecordTimer.timeChanged(entry)
-
+				timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
+				success = False
+				if not timersanitycheck.check():
+					simulTimerList = timersanitycheck.getSimulTimerList()
+					if simulTimerList is not None:
+						for x in simulTimerList:
+							if x.setAutoincreaseEnd(entry):
+								self.session.nav.RecordTimer.timeChanged(x)
+						if not timersanitycheck.check():
+							simulTimerList = timersanitycheck.getSimulTimerList()
+							if simulTimerList is not None:
+								self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
+						else:
+							success = True
+				else:
+					success = True
+				if success:
+					print "[TimerEditList] sanity check passed"
+					self.session.nav.RecordTimer.timeChanged(entry)
 			self.fillTimerList()
-			self.updateState()
-		else:
-			print "[TimerEditList] timer edit aborted"
 
 	def finishedAdd(self, answer):
 		print "[TimerEditList] finished add"
 		if answer[0]:
 			entry = answer[1]
-			simulTimerList = self.session.nav.RecordTimer.record(entry)
-			if simulTimerList is not None:
-				for x in simulTimerList:
-					if x.setAutoincreaseEnd(entry):
-						self.session.nav.RecordTimer.timeChanged(x)
+			if entry.external:
+				self.fallbackTimer.addTimer(entry, self.refill)
+			else:
 				simulTimerList = self.session.nav.RecordTimer.record(entry)
 				if simulTimerList is not None:
-					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+					for x in simulTimerList:
+						if x.setAutoincreaseEnd(entry):
+							self.session.nav.RecordTimer.timeChanged(x)
+					simulTimerList = self.session.nav.RecordTimer.record(entry)
+					if simulTimerList is not None:
+						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self.fillTimerList()
-			self.updateState()
-		else:
-			print "[TimerEditList] timer edit aborted"
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -351,7 +364,6 @@ class TimerEditList(Screen):
 
 	def onStateChange(self, entry):
 		self.refill()
-		self.updateState()
 
 class TimerSanityConflict(Screen):
 	def __init__(self, session, timer):
@@ -372,9 +384,9 @@ class TimerSanityConflict(Screen):
 		self["timerlist"] = TimerList(self.list)
 
 		self["key_red"] = Button(_("Cancel"))
-		self["key_green"] = Button(" ")
-		self["key_yellow"] = Button(" ")
-		self["key_blue"] = Button(" ")
+		self["key_green"] = Button("")
+		self["key_yellow"] = Button("")
+		self["key_blue"] = Button("")
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions", "MenuActions"],
 			{

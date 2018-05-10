@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-15 01:08+0200\n"
+"POT-Creation-Date: 2018-05-01 14:08+0200\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -1540,6 +1540,11 @@ msgid "Automatic Scan"
 msgstr "Ricerca automatica"
 
 #
+#, fuzzy
+msgid "Automatic bookmarks"
+msgstr "Ricerca automatica"
+
+#
 msgid "Automatic scan"
 msgstr "Ricerca automatica"
 
@@ -2692,9 +2697,6 @@ msgstr "Opzione per impostare la modalità di cambio canale del ricevitore."
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
-msgid "Configure to override HDMI EDID."
-msgstr ""
-
 msgid "Configure where completed timers show up in the timer list."
 msgstr "Opzione per impostare l'ordine di visualizzazione delle voci concluse nell'elenco timer."
 
@@ -3498,6 +3500,9 @@ msgstr "Display e Interfaccia utente"
 msgid "Display message before playing next movie"
 msgstr "Visualizzare un messaggio prima di riprodurre la registrazione successiva"
 
+msgid "Display movie length in movielist (except single line style)."
+msgstr ""
+
 #
 msgid "Display setup"
 msgstr "Impostazioni display"
@@ -3520,6 +3525,9 @@ msgstr "Non cambiare"
 #
 msgid "Do not record"
 msgstr "Non registrare"
+
+msgid "Do not show file extensions for registered multimedia files."
+msgstr ""
 
 #
 msgid "Do nothing"
@@ -5344,6 +5352,19 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
 msgid "If enabled, display shows 12 chars instead 8, but in latin-1/translit only."
+msgstr ""
+
+#, fuzzy
+msgid "If enabled, then there will be displayed icons for new/unseen items too."
+msgstr "Opzione per abilitare la visualizzazione della barra informazioni all'inizio di un nuovo evento."
+
+msgid "If is disabled, then after Copy/Move will not be target directory stored into bookmarks."
+msgstr ""
+
+msgid "If is enabled and movie playback is finished, then after return to movielist will not be automaticaly start service playback."
+msgstr ""
+
+msgid "If set as 'Yes', then audiofiles are played in 'list mode' only, instead in full screen player."
 msgstr ""
 
 msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
@@ -7623,12 +7644,13 @@ msgstr "Play"
 msgid "Play DVD"
 msgstr "Riprodurre DVD"
 
-msgid "Play audio in background"
-msgstr "Riprodurre audio in background"
-
 #
 msgid "Play audio-CD..."
 msgstr "Riprodurre CD audio..."
+
+#, fuzzy
+msgid "Play audiofiles in list mode"
+msgstr "Riprodurre audio in background"
 
 msgid "Play back media files"
 msgstr "Riproduzione di file multimediali"
@@ -9852,6 +9874,11 @@ msgstr "Canali"
 msgid "Set PIN"
 msgstr "PIN configurazione"
 
+#
+#, fuzzy
+msgid "Set action when movie playback is finished."
+msgstr "Opzione per impostare il comportamento del ricevitore quando viene avviata la riproduzione di una registrazione."
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -9875,11 +9902,19 @@ msgstr "Indirizzo statico"
 msgid "Set fps for external subtitles"
 msgstr ""
 
+msgid "Set if You want see status icons, progress bars or nothing."
+msgstr ""
+
 msgid "Set interface as default Interface"
 msgstr ">> interfaccia predefinita"
 
 msgid "Set limits"
 msgstr "Impostare i limiti"
+
+#
+#, fuzzy
+msgid "Set movielist type."
+msgstr "Uscire da elenco registrazioni"
 
 msgid "Set pin code persistent"
 msgstr ""
@@ -9924,6 +9959,9 @@ msgstr "Configurare voltaggio e 22KHz"
 #
 msgid "Settings"
 msgstr "Config."
+
+msgid "Settings can be different for each directory separately (for non removeable devices only)."
+msgstr ""
 
 #
 msgid "Setup"
@@ -11604,6 +11642,9 @@ msgid "This is the order in which DiSEqC commands are sent to the aerial system.
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
+msgstr ""
+
+msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
 msgstr ""
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
@@ -13326,6 +13367,9 @@ msgstr ""
 msgid "You can display PIP with or without OSD Menu"
 msgstr ""
 
+msgid "You can enable if will be displayed extended EPG description for item."
+msgstr ""
+
 #
 msgid "You can install this plugin."
 msgstr "E' possibile installare questo plugin."
@@ -13342,6 +13386,17 @@ msgid ""
 "You can select with yellow the OnlineFlash Image\n"
 " or select Recovery to create a USB Disk Image for clean Install."
 msgstr ""
+
+msgid "You can set how will be finished movieplayer with 'Exit' button."
+msgstr ""
+
+msgid "You can set selected directory as 'root' directory for movie player."
+msgstr ""
+
+#
+#, fuzzy
+msgid "You can set sorting type for items in movielist."
+msgstr "Caricare in elenco la durata registrazioni"
 
 msgid "You cannot delete this!"
 msgstr "Impossibile rimuovere!"
