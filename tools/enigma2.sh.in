@@ -28,17 +28,17 @@ if [ ! -d /etc/enigma2 ] ; then
 fi
 
 # workaround for old libssl
-if [ -h /usr/lib/libssl.so.0.9.8 ]; then
-	echo "Found symlink /usr/lib/libssl.so.0.9.8"
+if [ -h @libdir@/libssl.so.0.9.8 ]; then
+	echo "Found symlink @libdir@/libssl.so.0.9.8"
 else
-	ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
+	ln -s @libdir@/libssl.so.1.0.0 @libdir@/libssl.so.0.9.8
 fi
 
 # workaround for old libcrypto
-if [ -h /usr/lib/libcrypto.so.0.9.8 ]; then
-	echo "Found symlink /usr/lib/libcrypto.so.0.9.8"
+if [ -h @libdir@/libcrypto.so.0.9.8 ]; then
+	echo "Found symlink @libdir@/libcrypto.so.0.9.8"
 else
-	ln -s /usr/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so.0.9.8
+	ln -s @libdir@/libcrypto.so.1.0.0 @libdir@/libcrypto.so.0.9.8
 fi
 
 # workaround for corrupt ssl files
@@ -61,8 +61,8 @@ fi
 #fi
 
 # remove annoying WebInterface relicts
-#if [ -d /usr/lib/enigma2/python/Plugins/Extensions/WebInterface/ ]; then
-#	rm -rf /usr/lib/enigma2/python/Plugins/Extensions/WebInterface/
+#if [ -d @libdir@/enigma2/python/Plugins/Extensions/WebInterface/ ]; then
+#	rm -rf @libdir@/enigma2/python/Plugins/Extensions/WebInterface/
 #fi
 
 if [ -x @bindir@/showiframe ]; then
@@ -87,9 +87,9 @@ fi
 
 # check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
-	LIBS="/opt/lib/libmediaclient.so /usr/lib/libopen.so.0.0.0"
+	LIBS="/opt/lib/libmediaclient.so @libdir@/libopen.so.0.0.0"
 else
-	LIBS="/usr/lib/libopen.so.0.0.0"
+	LIBS="@libdir@/libopen.so.0.0.0"
 fi
 
 sync
