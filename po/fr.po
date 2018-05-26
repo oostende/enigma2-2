@@ -2593,7 +2593,7 @@ msgid "Create new folder and exit"
 msgstr "Créer un répertoire et quitter"
 
 #, fuzzy
-msgid "Create seperate radio userbouquet"
+msgid "Create separate radio userbouquet"
 msgstr "restaurer les userbouquets effacé"
 
 #, python-format
