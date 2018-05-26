@@ -30,10 +30,10 @@ class TimerEntry(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.timer = timer
 
-		self.edit = edit
-		self.service_ref_prev = self.timer.service_ref
-		self.begin_prev = self.timer.begin
-		self.end_prev = self.timer.end
+		self.timer.service_ref_prev = self.timer.service_ref
+		self.timer.begin_prev = self.timer.begin
+		self.timer.end_prev = self.timer.end
+		self.timer.external_prev = self.timer.external
 
 		self.entryDate = None
 		self.entryService = None
@@ -164,7 +164,7 @@ class TimerEntry(Screen, ConfigListScreen):
 	def createSetup(self, widget):
 		self.list = []
 		self.entryRemoteTimer = getConfigListEntry(_("Remote Timer"), self.timerentry_fallback)
-		if config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and not hasattr(self, "timerentry_remote") and not self.edit:
+		if config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and not hasattr(self, "timerentry_remote"):
 			self.list.append(self.entryRemoteTimer)
 		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name)
 		self.list.append(self.entryName)
