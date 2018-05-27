@@ -2586,7 +2586,7 @@ msgstr "创建DVD-ISO"
 msgid "Create new folder and exit"
 msgstr "创建movie文件夹失败"
 
-msgid "Create seperate radio userbouquet"
+msgid "Create separate radio userbouquet"
 msgstr ""
 
 #, python-format

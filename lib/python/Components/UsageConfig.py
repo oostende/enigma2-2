@@ -409,6 +409,18 @@ def InitUsageConfig():
 		config.usage.toggle12to8characterVFD = ConfigYesNo(default = False)
 		config.usage.toggle12to8characterVFD.addNotifier(set12to8characterVFD)
 
+	if SystemInfo["LcdLiveTVMode"]:
+		def setLcdLiveTVMode(configElement):
+			open(SystemInfo["LcdLiveTVMode"], "w").write(configElement.value)
+		config.usage.LcdLiveTVMode = ConfigSelection(default = "0", choices=[str(x) for x in range(0,9)])
+		config.usage.LcdLiveTVMode.addNotifier(setLcdLiveTVMode)
+
+	if SystemInfo["LcdLiveDecoder"]:
+		def setLcdLiveDecoder(configElement):
+			open(SystemInfo["LcdLiveDecoder"], "w").write(configElement.value)
+		config.usage.LcdLiveDecoder = ConfigSelection(default = "0", choices=[str(x) for x in range(0,4)])
+		config.usage.LcdLiveDecoder.addNotifier(setLcdLiveDecoder)
+
 	config.usage.boolean_graphic = ConfigYesNo(default=True)
 
 	config.epg = ConfigSubsection()

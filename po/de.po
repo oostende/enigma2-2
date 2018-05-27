@@ -2559,7 +2559,7 @@ msgstr "DVD-ISO erstellen"
 msgid "Create new folder and exit"
 msgstr "Neuen Ordner erstellen und verlassen"
 
-msgid "Create seperate radio userbouquet"
+msgid "Create separate radio userbouquet"
 msgstr "Erstelle eigenes Radio Bouquet"
 
 #, python-format

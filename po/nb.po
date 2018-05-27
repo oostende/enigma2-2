@@ -2855,7 +2855,7 @@ msgid "Create new folder and exit"
 msgstr "Lag ny mappe og avslutt"
 
 #, fuzzy
-msgid "Create seperate radio userbouquet"
+msgid "Create separate radio userbouquet"
 msgstr "gjenopprett slettede kanallister"
 
 #, python-format

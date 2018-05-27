@@ -2553,7 +2553,7 @@ msgstr "ISO oluştur"
 msgid "Create new folder and exit"
 msgstr "Yeni bir klasör oluştur ve çık"
 
-msgid "Create seperate radio userbouquet"
+msgid "Create separate radio userbouquet"
 msgstr "Ayrı radyo kullanıcısı oluştur"
 
 #, python-format
