@@ -2647,7 +2647,7 @@ msgstr "Створити DVD-ISO"
 msgid "Create new folder and exit"
 msgstr "Створити нову папку"
 
-msgid "Create seperate radio userbouquet"
+msgid "Create separate radio userbouquet"
 msgstr ""
 
 #, python-format
