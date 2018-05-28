@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 14:08+0200\n"
+"POT-Creation-Date: 2018-05-28 14:28+0200\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -3401,6 +3401,9 @@ msgstr ""
 msgid "Drivers: %s"
 msgstr ""
 
+msgid "Drop unconfigured sattelites"
+msgstr ""
+
 msgid "Due to the used filesystem, the fullbackup\n"
 msgstr ""
 
@@ -3573,6 +3576,9 @@ msgstr ""
 
 msgid "Enable freesat EPG"
 msgstr "Aktivizēt freesat EPG"
+
+msgid "Enable import timer from fallback tuner"
+msgstr ""
 
 msgid "Enable infobar fade-out"
 msgstr ""
@@ -3758,6 +3764,12 @@ msgid "Error when writing epg.dat on server"
 msgstr ""
 
 msgid "Error while retreiving epg.dat from server"
+msgstr ""
+
+#, python-format
+msgid ""
+"Error while retreiving fallback timer information\n"
+"%s"
 msgstr ""
 
 msgid "Error while retreiving location of epg.dat on server"
@@ -4023,6 +4035,9 @@ msgid "Failed:"
 msgstr "Neizdevās"
 
 msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
+msgid "Fallback Timer"
 msgstr ""
 
 msgid "Fallback remote receiver"
@@ -10898,6 +10913,9 @@ msgstr "Atsaukt atinstalēšanu"
 msgid "Unencrypted"
 msgstr "Nešifrēts"
 
+msgid "Unexpected error while retreiving fallback tuner's timer information"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "Neapstrādāta poga"
 
@@ -11519,6 +11537,9 @@ msgid "When enabled the arrow buttons around the OK button will follow the 'neut
 msgstr ""
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is imported"
 msgstr ""
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -12162,6 +12183,10 @@ msgid "Zap to"
 msgstr "Pārslēgšanās režīms"
 
 msgid "Zap to selected channel"
+msgstr "Pārslēgties uz izvēlēto kanālu"
+
+#, fuzzy
+msgid "Zap to selected channel and exit GMEPG"
 msgstr "Pārslēgties uz izvēlēto kanālu"
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"

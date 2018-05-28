@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 14:08+0200\n"
+"POT-Creation-Date: 2018-05-28 14:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2614,6 +2614,9 @@ msgstr ""
 msgid "Drivers: %s"
 msgstr ""
 
+msgid "Drop unconfigured sattelites"
+msgstr ""
+
 msgid "Due to the used filesystem, the fullbackup\n"
 msgstr ""
 
@@ -2729,6 +2732,9 @@ msgid "Enable auto fast scan for %s"
 msgstr ""
 
 msgid "Enable fallback remote receiver"
+msgstr ""
+
+msgid "Enable import timer from fallback tuner"
 msgstr ""
 
 msgid "Enable or disable Ipv6."
@@ -2884,6 +2890,12 @@ msgid "Error when writing epg.dat on server"
 msgstr ""
 
 msgid "Error while retreiving epg.dat from server"
+msgstr ""
+
+#, python-format
+msgid ""
+"Error while retreiving fallback timer information\n"
+"%s"
 msgstr ""
 
 msgid "Error while retreiving location of epg.dat on server"
@@ -3096,6 +3108,9 @@ msgid "Failed:"
 msgstr ""
 
 msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
+msgid "Fallback Timer"
 msgstr ""
 
 msgid "Fallback remote receiver"
@@ -4653,6 +4668,9 @@ msgid "Movie selection"
 msgstr ""
 
 msgid "Movie/Drama"
+msgstr ""
+
+msgid "Movielist menu"
 msgstr ""
 
 msgid "Moving"
@@ -8617,6 +8635,9 @@ msgstr ""
 msgid "Unencrypted"
 msgstr ""
 
+msgid "Unexpected error while retreiving fallback tuner's timer information"
+msgstr ""
+
 msgid "Unhide parental control services"
 msgstr ""
 
@@ -9070,6 +9091,9 @@ msgstr ""
 msgid "Western Sahara"
 msgstr ""
 
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
 msgstr ""
 
@@ -9427,6 +9451,9 @@ msgid "Zap to"
 msgstr ""
 
 msgid "Zap to selected channel"
+msgstr ""
+
+msgid "Zap to selected channel and exit GMEPG"
 msgstr ""
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
@@ -10940,9 +10967,6 @@ msgid "MORE"
 msgstr ""
 
 msgid "Message..."
-msgstr ""
-
-msgid "Movielist menu"
 msgstr ""
 
 msgid "Mute"

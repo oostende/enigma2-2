@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue (Apachi70)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 14:08+0200\n"
+"POT-Creation-Date: 2018-05-28 14:28+0200\n"
 "PO-Revision-Date: 2018-05-05 00:25+0200\n"
 "Last-Translator: Apachi70 <apachi70000@gmail.com>\n"
 "Language-Team: Turkish <apachi70000@gmail.com>\n"
@@ -3267,6 +3267,10 @@ msgstr "Dreambox formatında veri DVD (diğer DVD oynatıcılarla çalışmaz)"
 msgid "Drivers: %s"
 msgstr "Sürücüler:% s"
 
+#, fuzzy
+msgid "Drop unconfigured sattelites"
+msgstr "Bağlı uydular"
+
 msgid "Due to the used filesystem, the fullbackup\n"
 msgstr "Kullanılan dosya sistemine, tam yedekleme nedeniyle\n"
 
@@ -3434,6 +3438,10 @@ msgstr "yedek uzaktan alıcısını etkinleştirmek"
 
 msgid "Enable freesat EPG"
 msgstr "Freesat EPG etkinleştir"
+
+#, fuzzy
+msgid "Enable import timer from fallback tuner"
+msgstr "Kanalları yedek tunerden içe aktar"
 
 msgid "Enable infobar fade-out"
 msgstr "Bilgi çubuğu soldurmayı etkinleştir"
@@ -3610,6 +3618,12 @@ msgstr "Sunucuda epg.dat yazılırken hata oluştu"
 
 msgid "Error while retreiving epg.dat from server"
 msgstr "Sunucudan epg.data alınırken hata oluştu"
+
+#, fuzzy, python-format
+msgid ""
+"Error while retreiving fallback timer information\n"
+"%s"
+msgstr "Sunucuda epg.dat yerini geri alırken hata oluştu"
 
 msgid "Error while retreiving location of epg.dat on server"
 msgstr "Sunucuda epg.dat yerini geri alırken hata oluştu"
@@ -3863,6 +3877,10 @@ msgstr "Başarısız:"
 
 msgid "Falkland Islands (Malvinas)"
 msgstr "Falkland Adaları (Malvinas)"
+
+#, fuzzy
+msgid "Fallback Timer"
+msgstr "Yedek tuner kurulumu"
 
 msgid "Fallback remote receiver"
 msgstr "Yedek uzaktan alıcı"
@@ -10390,6 +10408,9 @@ msgstr "Kaldırmayı geri al"
 msgid "Unencrypted"
 msgstr "Şifresiz"
 
+msgid "Unexpected error while retreiving fallback tuner's timer information"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "Tanımsız Özel \tŞifre"
 
@@ -10988,6 +11009,10 @@ msgstr "Tamam düğmesine etrafında ok düğmelerini etkin olduğunda 'neutrino
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr "sol etkinleştirildiğinde, sağa, C ++ / - B +/- düğmeleri 'nötrino' tarzı zap kontrolleri yerine enigma2 tarzını takip edecektir B +/-."
+
+#, fuzzy
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Yedekleme tuneri içe aktarılan kanallar"
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
 msgstr "Kanal seçimi yeni bir kanal seçtiğinizde sonra etkinleştirildiğinde zaman kanal seçimi yakın olmaz. Eğer geçerli oyun servisini seçtiğinizde sadece kapanacak. Bu önizleme modunda bir tür"
@@ -11654,6 +11679,10 @@ msgid "Zap to"
 msgstr "için Zap"
 
 msgid "Zap to selected channel"
+msgstr "Seçilen kanalı aç"
+
+#, fuzzy
+msgid "Zap to selected channel and exit GMEPG"
 msgstr "Seçilen kanalı aç"
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"

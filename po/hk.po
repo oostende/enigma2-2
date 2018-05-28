@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 14:08+0200\n"
+"POT-Creation-Date: 2018-05-28 14:28+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -3334,6 +3334,10 @@ msgstr "Dreambox資料格式的DVD （HDTV相容）"
 msgid "Drivers: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Drop unconfigured sattelites"
+msgstr "連接的用戶端"
+
 msgid "Due to the used filesystem, the fullbackup\n"
 msgstr ""
 
@@ -3508,6 +3512,9 @@ msgid "Enable fallback remote receiver"
 msgstr ""
 
 msgid "Enable freesat EPG"
+msgstr ""
+
+msgid "Enable import timer from fallback tuner"
 msgstr ""
 
 msgid "Enable infobar fade-out"
@@ -3692,6 +3699,12 @@ msgid "Error when writing epg.dat on server"
 msgstr ""
 
 msgid "Error while retreiving epg.dat from server"
+msgstr ""
+
+#, python-format
+msgid ""
+"Error while retreiving fallback timer information\n"
+"%s"
 msgstr ""
 
 msgid "Error while retreiving location of epg.dat on server"
@@ -3956,6 +3969,9 @@ msgid "Failed:"
 msgstr "失敗"
 
 msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
+msgid "Fallback Timer"
 msgstr ""
 
 msgid "Fallback remote receiver"
@@ -10831,6 +10847,9 @@ msgstr "撤銷刪除"
 msgid "Unencrypted"
 msgstr ""
 
+msgid "Unexpected error while retreiving fallback tuner's timer information"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr ""
 
@@ -11432,6 +11451,9 @@ msgid "When enabled the arrow buttons around the OK button will follow the 'neut
 msgstr ""
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is imported"
 msgstr ""
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -12052,6 +12074,9 @@ msgid "Zap to"
 msgstr ""
 
 msgid "Zap to selected channel"
+msgstr ""
+
+msgid "Zap to selected channel and exit GMEPG"
 msgstr ""
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"

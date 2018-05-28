@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 14:08+0200\n"
-"PO-Revision-Date: 2018-05-03 18:52+0200\n"
+"POT-Creation-Date: 2018-05-28 14:28+0200\n"
+"PO-Revision-Date: 2018-05-28 14:40+0200\n"
 "Last-Translator: -=niki=- <niki_msn@hotmail.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -3274,6 +3274,9 @@ msgstr "Dreambox Format (DatenDVD - läuft nicht in anderen DVD Playern)"
 msgid "Drivers: %s"
 msgstr "Treiber: %s"
 
+msgid "Drop unconfigured sattelites"
+msgstr "Nicht konfigurierte Satelliten verwerfen"
+
 msgid "Due to the used filesystem, the fullbackup\n"
 msgstr "Durch das verwendete Dateisystem wird die vollständige Sicherung\n"
 
@@ -3441,6 +3444,9 @@ msgstr "Aktiviere Fallback Remote Receiver"
 
 msgid "Enable freesat EPG"
 msgstr "Aktiviere freesat EPG"
+
+msgid "Enable import timer from fallback tuner"
+msgstr "Aktiviere den Import der Timer vom Notfalltuner"
 
 msgid "Enable infobar fade-out"
 msgstr "Aktiviere Ausblenden der Infobar"
@@ -3617,6 +3623,14 @@ msgstr "Fehler beim Schreiben der epg.dat am Server"
 
 msgid "Error while retreiving epg.dat from server"
 msgstr "Fehler beim Lesen der epg.dat am Server"
+
+#, python-format
+msgid ""
+"Error while retreiving fallback timer information\n"
+"%s"
+msgstr ""
+"Fehler beim Abruf der Notfall Timer Information\n"
+"\v%s"
 
 msgid "Error while retreiving location of epg.dat on server"
 msgstr "Fehler beim Abruf des Speicherorts der epg.dat"
@@ -3870,6 +3884,9 @@ msgstr "Fehlgeschlagen:"
 
 msgid "Falkland Islands (Malvinas)"
 msgstr "Falkland Islands (Malvinas)"
+
+msgid "Fallback Timer"
+msgstr "Notfall Timer"
 
 msgid "Fallback remote receiver"
 msgstr "Notfall Receiver"
@@ -5890,6 +5907,13 @@ msgstr "New Zealand"
 msgid "News Current Affairs"
 msgstr "Nachrichten/Aktuelles Tagesgeschehen"
 
+#, fuzzy
+msgctxt "button label, 'next screen'"
+msgid "Next"
+msgstr "Es folgt"
+
+#, fuzzy
+msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Es folgt"
 
@@ -10413,6 +10437,9 @@ msgstr "Deinstallation zurücksetzen"
 msgid "Unencrypted"
 msgstr "Unverschlüsselt"
 
+msgid "Unexpected error while retreiving fallback tuner's timer information"
+msgstr "Unerwarteter Fehler beim Empfang der Timer Informationen vom Notfall Receiver."
+
 msgid "UnhandledKey"
 msgstr "Taste nicht unterstützt"
 
@@ -11012,6 +11039,9 @@ msgstr "Wenn aktiviert, wird das Steuerkreuz wie bei Neutrino belegt statt der s
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr "Wenn aktiviert, werden Links, Rechts, CH+/- wie bei Neutrino belegt anstelle der standard Enigma2-Belegung."
+
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Wenn aktiviert werden die Timer vom Notfall Empfänger importiert"
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
 msgstr "Wenn aktiviert, wird die Kanalliste nicht geschlossen wenn ein neuer Kanal angewählt wird. Umgeschaltet wird durch 2 maliges Drücken von OK. Dies ist als eine Art Vorschaumodus zu betrachten"
@@ -11679,6 +11709,9 @@ msgstr "Zappe nach"
 
 msgid "Zap to selected channel"
 msgstr "Schalte zum ausgewählten Sender um"
+
+msgid "Zap to selected channel and exit GMEPG"
+msgstr "Schalte zum ausgewählten Sender und beende GMEPG"
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 msgstr "Schalte zum ausgewählten Sender um oder zeige detaillierte Sendungsinformation an (von Ihrer Einstellung abhängig)."

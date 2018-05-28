@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 14:08+0200\n"
+"POT-Creation-Date: 2018-05-28 14:28+0200\n"
 "PO-Revision-Date: 2015-02-09 16:12+0100\n"
 "Last-Translator: jrodzar <jrodzar@gmail.com>\n"
 "Language-Team: none\n"
@@ -3859,6 +3859,10 @@ msgstr "Dreambox datos con formato de DVD (no funcionará en otros reproductores
 msgid "Drivers: %s"
 msgstr "Controladores DVB:"
 
+#, fuzzy
+msgid "Drop unconfigured sattelites"
+msgstr "Satélites conectados"
+
 msgid "Due to the used filesystem, the fullbackup\n"
 msgstr ""
 
@@ -4056,6 +4060,9 @@ msgstr "Activar receptor remoto de reserva"
 
 msgid "Enable freesat EPG"
 msgstr "Habilitar freesat EPG"
+
+msgid "Enable import timer from fallback tuner"
+msgstr ""
 
 msgid "Enable infobar fade-out"
 msgstr "Habilitar desvanecimiento infobar"
@@ -4264,6 +4271,12 @@ msgid "Error when writing epg.dat on server"
 msgstr ""
 
 msgid "Error while retreiving epg.dat from server"
+msgstr ""
+
+#, python-format
+msgid ""
+"Error while retreiving fallback timer information\n"
+"%s"
 msgstr ""
 
 msgid "Error while retreiving location of epg.dat on server"
@@ -4573,6 +4586,10 @@ msgstr "Falló"
 
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
+
+#, fuzzy
+msgid "Fallback Timer"
+msgstr "Receptor remoto suplencia URL"
 
 #, fuzzy
 msgid "Fallback remote receiver"
@@ -12504,6 +12521,9 @@ msgstr "Deshacer desinstalación"
 msgid "Unencrypted"
 msgstr "Sin cifrar"
 
+msgid "Unexpected error while retreiving fallback tuner's timer information"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "Tecla no manejada"
 
@@ -13209,6 +13229,9 @@ msgstr "Cuando habilita los botones de flecha alrededor del botón OK seguirán 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr "Cuando habilita la izquierda, derecha, CH + /-, B + /-, P + / botones seguirán los controles 'neutrino' estilo zap en lugar del estilo enigma2."
 
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
 msgstr "Entonces se activa cuando se selecciona un nuevo canal en el canal selección del canal no se cerrará. Sólo se cerrará cuando seleccionas el servicio de reproducción actual. Este es un tipo de modo de vista previa"
 
@@ -13905,6 +13928,10 @@ msgid "Zap to"
 msgstr "Zap a"
 
 msgid "Zap to selected channel"
+msgstr "Zap al canal seleccionado"
+
+#, fuzzy
+msgid "Zap to selected channel and exit GMEPG"
 msgstr "Zap al canal seleccionado"
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
