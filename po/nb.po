@@ -3703,7 +3703,7 @@ msgid "Drivers: %s"
 msgstr "DVB driver:"
 
 #, fuzzy
-msgid "Drop unconfigured sattelites"
+msgid "Drop unconfigured satellites"
 msgstr "Tilkoblede satellitter"
 
 msgid "Due to the used filesystem, the fullbackup\n"

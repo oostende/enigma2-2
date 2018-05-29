@@ -3860,7 +3860,7 @@ msgid "Drivers: %s"
 msgstr "Controladores DVB:"
 
 #, fuzzy
-msgid "Drop unconfigured sattelites"
+msgid "Drop unconfigured satellites"
 msgstr "Satélites conectados"
 
 msgid "Due to the used filesystem, the fullbackup\n"

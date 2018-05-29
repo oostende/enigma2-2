@@ -3142,7 +3142,7 @@ msgstr ""
 msgid "Drivers: %s"
 msgstr ""
 
-msgid "Drop unconfigured sattelites"
+msgid "Drop unconfigured satellites"
 msgstr ""
 
 msgid "Due to the used filesystem, the fullbackup\n"

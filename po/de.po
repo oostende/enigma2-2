@@ -3274,7 +3274,7 @@ msgstr "Dreambox Format (DatenDVD - läuft nicht in anderen DVD Playern)"
 msgid "Drivers: %s"
 msgstr "Treiber: %s"
 
-msgid "Drop unconfigured sattelites"
+msgid "Drop unconfigured satellites"
 msgstr "Nicht konfigurierte Satelliten verwerfen"
 
 msgid "Due to the used filesystem, the fullbackup\n"

@@ -3335,7 +3335,7 @@ msgid "Drivers: %s"
 msgstr ""
 
 #, fuzzy
-msgid "Drop unconfigured sattelites"
+msgid "Drop unconfigured satellites"
 msgstr "連接的用戶端"
 
 msgid "Due to the used filesystem, the fullbackup\n"

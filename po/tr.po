@@ -3268,7 +3268,7 @@ msgid "Drivers: %s"
 msgstr "Sürücüler:% s"
 
 #, fuzzy
-msgid "Drop unconfigured sattelites"
+msgid "Drop unconfigured satellites"
 msgstr "Bağlı uydular"
 
 msgid "Due to the used filesystem, the fullbackup\n"
