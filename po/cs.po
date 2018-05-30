@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 14:08+0200\n"
+"POT-Creation-Date: 2018-05-28 14:28+0200\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -3857,6 +3857,11 @@ msgstr ""
 msgid "Drivers: %s"
 msgstr "DVB ovladače:"
 
+#
+#, fuzzy
+msgid "Drop unconfigured satellites"
+msgstr "Připojené satelity"
+
 msgid "Due to the used filesystem, the fullbackup\n"
 msgstr ""
 
@@ -4057,6 +4062,9 @@ msgstr "Povolit záložní přijímač"
 
 msgid "Enable freesat EPG"
 msgstr "Povolit freesat EPG"
+
+msgid "Enable import timer from fallback tuner"
+msgstr ""
 
 msgid "Enable infobar fade-out"
 msgstr ""
@@ -4264,6 +4272,12 @@ msgid "Error when writing epg.dat on server"
 msgstr ""
 
 msgid "Error while retreiving epg.dat from server"
+msgstr ""
+
+#, python-format
+msgid ""
+"Error while retreiving fallback timer information\n"
+"%s"
 msgstr ""
 
 msgid "Error while retreiving location of epg.dat on server"
@@ -4571,6 +4585,10 @@ msgstr "Selhalo"
 
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
+
+#, fuzzy
+msgid "Fallback Timer"
+msgstr "Adresa vzdáleného záložního přijímače"
 
 #, fuzzy
 msgid "Fallback remote receiver"
@@ -12452,6 +12470,9 @@ msgstr "Ponechat"
 msgid "Unencrypted"
 msgstr "Nezabezpečeno"
 
+msgid "Unexpected error while retreiving fallback tuner's timer information"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr "Neošetřené tlačítko"
@@ -13159,6 +13180,9 @@ msgstr "Jestliže je povoleno, pak šipky okolo tlačítka OK budou používat '
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr "Jestliže je povoleno, pak tlačítka vlevo, vpravo, CH+/-, B+/-, P+/- budou používat 'neutrino' styl pro přepínání namísto stylu enigma2."
 
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
 msgstr "Pokud je povoleno a vyberete nový kanál ve výběru kanálů, pak výběr kanálů nebude uzavřen. Zavře se pouze tehdy, jestliže vyberete aktuální přehrávanou službu. To je druh režimu náhledu"
 
@@ -13847,6 +13871,10 @@ msgid "Zap to"
 msgstr "Přepnout na"
 
 msgid "Zap to selected channel"
+msgstr "přepnout na vybraný kanál"
+
+#, fuzzy
+msgid "Zap to selected channel and exit GMEPG"
 msgstr "přepnout na vybraný kanál"
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"

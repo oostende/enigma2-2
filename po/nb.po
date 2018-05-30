@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 14:08+0200\n"
+"POT-Creation-Date: 2018-05-28 14:28+0200\n"
 "PO-Revision-Date: 2015-08-25 18:31+0100\n"
 "Last-Translator: andy1 <dmmm8000pvr@gmail.com>\n"
 "Language-Team: none\n"
@@ -3702,6 +3702,10 @@ msgstr ""
 msgid "Drivers: %s"
 msgstr "DVB driver:"
 
+#, fuzzy
+msgid "Drop unconfigured satellites"
+msgstr "Tilkoblede satellitter"
+
 msgid "Due to the used filesystem, the fullbackup\n"
 msgstr ""
 
@@ -3890,6 +3894,9 @@ msgstr "Bruk ekstern reserve mottaker"
 
 msgid "Enable freesat EPG"
 msgstr "Aktiver freesat EPG"
+
+msgid "Enable import timer from fallback tuner"
+msgstr ""
 
 msgid "Enable infobar fade-out"
 msgstr ""
@@ -4095,6 +4102,12 @@ msgid "Error when writing epg.dat on server"
 msgstr ""
 
 msgid "Error while retreiving epg.dat from server"
+msgstr ""
+
+#, python-format
+msgid ""
+"Error while retreiving fallback timer information\n"
+"%s"
 msgstr ""
 
 msgid "Error while retreiving location of epg.dat on server"
@@ -4394,6 +4407,10 @@ msgstr "Feilet"
 
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
+
+#, fuzzy
+msgid "Fallback Timer"
+msgstr "Ekstern-mottakers URL"
 
 #, fuzzy
 msgid "Fallback remote receiver"
@@ -11950,6 +11967,9 @@ msgstr "Angre avinstallering"
 msgid "Unencrypted"
 msgstr "Ukryptert"
 
+msgid "Unexpected error while retreiving fallback tuner's timer information"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr "Ubrukt tast"
@@ -12624,6 +12644,9 @@ msgstr "Når aktivert, vil piltast knappene rundt OK følge 'neutrino' stil, i s
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr "Når aktivert, vil venstre, høyre, CH+/-,B+/-,P+/- knappene rundt OK følge 'neutrino' kanalbytte oppsett, i stedet for enigma2 oppsett"
 
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
 msgstr "Når aktivert vil kanallisten ikke lukkes selv om det velges en ny kanal fra kanallisten. Den vil bare lukkes når du velger gjeldene kanal. Dette er en slags forhåndsvisning"
 
@@ -13283,6 +13306,10 @@ msgid "Zap to"
 msgstr "Zap til"
 
 msgid "Zap to selected channel"
+msgstr "Gå til valgt kanal"
+
+#, fuzzy
+msgid "Zap to selected channel and exit GMEPG"
 msgstr "Gå til valgt kanal"
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
