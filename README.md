@@ -4,7 +4,7 @@
 
 ## teamBlue 6.2 (based on openPLi) is build using oe-alliance build-environment "4.2" and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/4.1](https://github.com/oe-alliance/oe-alliance-core/tree/4.2 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/4.2](https://github.com/oe-alliance/oe-alliance-core/tree/4.2 "OE-Alliance")
 > 
 > [https://github.com/teamblue-e2/enigma2/tree/master](https://github.com/teamblue-e2/enigma2/tree/master "teamBlue E2")
 > 
