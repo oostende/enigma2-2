@@ -2,9 +2,9 @@
 
 > Ubuntu 16.04.1 LTS (GNU/Linux 3.14.32-xxxx-grs-ipv6-64 x86_64)
 
-## teamBlue 6.1 (based on openPLi) is build using oe-alliance build-environment "4.1" and several git repositories: ##
+## teamBlue 6.2 (based on openPLi) is build using oe-alliance build-environment "4.2" and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/4.1](https://github.com/oe-alliance/oe-alliance-core/tree/4.1 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/4.1](https://github.com/oe-alliance/oe-alliance-core/tree/4.2 "OE-Alliance")
 > 
 > [https://github.com/teamblue-e2/enigma2/tree/master](https://github.com/teamblue-e2/enigma2/tree/master "teamBlue E2")
 > 
@@ -56,7 +56,7 @@
 ----------
 8 - Clone oe-alliance git
 
-    git clone git://github.com/oe-alliance/build-enviroment.git -b 4.1
+    git clone git://github.com/oe-alliance/build-enviroment.git -b 4.2
 
 ----------
 9 - Switch to folder build-enviroment
