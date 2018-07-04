@@ -214,7 +214,6 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 
 		if (res_mgr->canAllocateChannel(chid, chid_ignore, system, simulate))
 		{
-			std::string python_config_str;
 			bool use_ci_assignment = eConfigManager::getConfigBoolValue("config.misc.use_ci_assignment", false);
 			if (use_ci_assignment)
 			{
@@ -243,7 +242,7 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 						}
 					}
 				}
-				eDebug("isPlayble... error in python code");
+				eDebug("[eDVBService] isPlayble... error in python code");
 				PyErr_Print();
 			}
 			return 1;
