@@ -1,6 +1,7 @@
 from Screens.Screen import Screen
 from Screens.ChannelSelection import *
-from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
+from Screens.ChoiceBox import ChoiceBox
+from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.config import ConfigNothing
@@ -8,12 +9,14 @@ from Components.ConfigList import ConfigList
 from Components.Label import Label
 from Components.SelectionList import SelectionList
 from Components.MenuList import MenuList
+from Components.SystemInfo import SystemInfo
 from ServiceReference import ServiceReference
 from Plugins.Plugin import PluginDescriptor
-from xml.etree.cElementTree import parse as ci_parse
-from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
-from Tools.CIHelper import cihelper
+from xml.etree.cElementTree import parse
 from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
+from Tools.BoundFunction import boundFunction
+from Tools.CIHelper import cihelper
+from Tools.XMLTools import stringToXML
 
 import os
 
@@ -28,12 +31,9 @@ class CIselectMainMenu(Screen):
 		</screen>"""
 
 	def __init__(self, session, args = 0):
-
 		Screen.__init__(self, session)
-
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Edit"))
-
 		self["actions"] = ActionMap(["ColorActions","SetupActions"],
 			{
 				"green": self.greenPressed,
@@ -42,7 +42,7 @@ class CIselectMainMenu(Screen):
 				"cancel": self.close
 			}, -1)
 
-		NUM_CI = eDVBCIInterfaces.getInstance() and eDVBCIInterfaces.getInstance().getNumOfSlots()
+		NUM_CI = SystemInfo["CommonInterface"]
 
 		print "[CI_Wizzard] FOUND %d CI Slots " % NUM_CI
 
@@ -134,7 +134,7 @@ class CIconfigMenu(Screen):
 
 		i = 0
 		self.caidlist = []
-		print eDVBCIInterfaces.getInstance().readCICaIds(self.ci_slot)
+		# print eDVBCIInterfaces.getInstance().readCICaIds(self.ci_slot)
 		for caid in eDVBCIInterfaces.getInstance().readCICaIds(self.ci_slot):
 			i += 1
 			self.caidlist.append((str(hex(int(caid))),str(caid),i))
@@ -153,7 +153,7 @@ class CIconfigMenu(Screen):
 		self.loadXML()
 		# if config mode !=advanced autoselect any caid
 		if config.usage.setup_level.index <= 1: # advanced
-			self.selectedcaid=self.caidlist
+			self.selectedcaid = self.caidlist
 			self.finishedCAidSelection(self.selectedcaid)
 		self.onShown.append(self.setWindowTitle)
 
@@ -174,7 +174,7 @@ class CIconfigMenu(Screen):
 
 	def cancel(self):
 		self.saveXML()
-		activate_all(self)
+		cihelper.load_ci_assignment(force=True)
 		self.close()
 
 	def setServiceListInfo(self):
@@ -242,16 +242,16 @@ class CIconfigMenu(Screen):
 				if len(self.selectedcaid):
 					fp.write("\t\t<caid id=\"%s\" />\n" % item[0])
 			for item in self.servicelist:
-				if len(self.servicelist): 
+				if len(self.servicelist):
 					name = item[0].replace('<', '&lt;')
 					name = name.replace('&', '&amp;')
 					name = name.replace('>', '&gt;')
 					name = name.replace('"', '&quot;')
 					name = name.replace("'", '&apos;')
-					if item[2]==1:
-						fp.write("\t\t<provider name=\"%s\" dvbnamespace=\"%s\" />\n" % (name, item[3]))
+					if item[2] == 1:
+						fp.write("\t\t<provider name=\"%s\" dvbnamespace=\"%s\" />\n" % (stringToXML(name), item[3]))
 					else:
-						fp.write("\t\t<service name=\"%s\" ref=\"%s\" />\n"  % (name, item[3]))
+						fp.write("\t\t<service name=\"%s\" ref=\"%s\" />\n"  % (stringToXML(name), item[3]))
 			fp.write("\t</slot>\n")
 			fp.write("</ci>\n")
 			fp.close()
@@ -270,20 +270,15 @@ class CIconfigMenu(Screen):
 			return Len > 0 and definitions[Len-1].text or default
 
 		try:
-			tree = ci_parse(self.filename).getroot()
-			self.read_services=[]
-			self.read_providers=[]
-			self.usingcaid=[]
-			self.ci_config=[]
+			tree = parse(self.filename).getroot()
 			for slot in tree.findall("slot"):
 				read_slot = getValue(slot.findall("id"), False).encode("UTF-8")
-				print "ci " + read_slot
-				i=0
+				i = 0
 				for caid in slot.findall("caid"):
 					read_caid = caid.get("id").encode("UTF-8")
 					self.selectedcaid.append((str(read_caid),str(read_caid),i))
 					self.usingcaid.append(long(read_caid,16))
-					i+=1
+					i += 1
 
 				for service in  slot.findall("service"):
 					read_service_name = service.get("name").encode("UTF-8")
@@ -311,7 +306,6 @@ class CIconfigMenu(Screen):
 			if len(item):
 				self.finishedProviderSelection(item[0],item[1])
 
-		# print self.ci_config
 		self.finishedCAidSelection(self.selectedcaid)
 		self["ServiceList"].l.setList(self.servicelist)
 		self.setServiceListInfo()
@@ -332,8 +326,7 @@ class easyCIconfigMenu(CIconfigMenu):
 
 	def __init__(self, session, ci_slot="9"):
 		Screen.setTitle(self, _("CI assignment"))
-
-		ci=ci_slot
+		ci = ci_slot
 		CIconfigMenu.__init__(self, session, ci_slot)
 
 		self["actions"] = ActionMap(["ColorActions","SetupActions"],
@@ -386,7 +379,6 @@ class CAidSelect(Screen):
 
 	def greenPressed(self):
 		list = self.list.getSelectionsList()
-		# print list
 		self.close(list)
 
 	def cancel(self):
@@ -583,6 +575,15 @@ def find_in_list(list, search, listpos=0):
 	for item in list:
 		if item[listpos] == search:
 			return True
+	return False
+
+def isModule():
+	NUM_CI = SystemInfo["CommonInterface"]
+	if NUM_CI and NUM_CI > 0:
+		for slot in range(NUM_CI):
+			state = eDVBCI_UI.getInstance().getState(slot)
+			if state > 0:
+				return True
 	return False
 
 global_session = None
