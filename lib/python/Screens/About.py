@@ -327,8 +327,8 @@ class CommitInfo(Screen):
 			("teamblue-e2",      "enigma2",               "teamBlue Enigma2",             "6.1", "github"),
 			("teamblue-e2",      "skin",             "teamBlue Skin GigaBlue Pax",   "master", "github"),
 			("oe-alliance",   "oe-alliance-core",     "OE Alliance Core",             "4.1", "github"),
-			("oe-alliance",   "oe-alliance-plugins",  "OE Alliance Plugins",          "2.3", "github"),
-			("oe-alliance",   "enigma2-plugins",      "OE Alliance Enigma2 Plugins",  "services-removed", "github")
+			("oe-alliance",   "oe-alliance-plugins",  "OE Alliance Plugins",          "master", "github"),
+			("oe-alliance",   "enigma2-plugins",      "OE Alliance Enigma2 Plugins",  "master", "github")
 		]
 		self.cachedProjects = {}
 		self.Timer = eTimer()
