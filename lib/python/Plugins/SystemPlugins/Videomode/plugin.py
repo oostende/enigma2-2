@@ -229,10 +229,18 @@ class AudioSetup(Screen, ConfigListScreen):
 				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("Configure the general audio delay of Dolby Digital sound tracks.")),
 				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("Configure the general audio delay of stereo sound tracks."))
 			))
+			if SystemInfo["CanDownmixDTSHD"]:
+				self.list.append(getConfigListEntry(_("DTS-HD downmix"), config.av.downmix_dtshd, _("Configure whether DTS-HD channel sound tracks should be downmixed or transcoded.")))
+			if SystemInfo["CanDownmixWMApro"]:
+				self.list.append(getConfigListEntry(_("WMA pro downmix"), config.av.downmix_wmapro, _("Configure whether WMA pro channel sound tracks should be downmixed or transcoded.")))
+			if SystemInfo["CanAC3plusTranscode"]:
+				self.list.append(getConfigListEntry(_("AC3 plus transcoding"), config.av.transcode_ac3plus, _("Configure whether AC3 plus sound tracks should be transcoded to AC3.")))
+			if SystemInfo["CanAACTranscode"]:
+				self.list.append(getConfigListEntry(_("AAC transcoding"), config.av.transcode_aac, _("Configure whether AAC sound tracks should be transcoded.")))
 			if SystemInfo["HasMultichannelPCM"]:
 				self.list.append(getConfigListEntry(_("Multichannel PCM"), config.av.multichannel_pcm, _("Configure whether multi channel PCM sound should be enabled.")))
 			if SystemInfo["HasAutoVolume"] or SystemInfo["HasAutoVolumeLevel"]:
-				self.list.append(getConfigListEntry(_("Audio auto volume level"), SystemInfo["HasAutoVolume"] and config.av.autovolume or config.av.autovolumelevel, _("This option configures you can set auto volume level.")))
+				self.list.append(getConfigListEntry(_("Audio auto volume level"), SystemInfo["HasAutoVolume"] and config.av.autovolume or config.av.autovolumelevel, _("This option allows you can to set the auto volume level.")))
 			if SystemInfo["Has3DSurround"]:
 				self.list.append(getConfigListEntry(_("3D surround"), config.av.surround_3d, _("This option allows you to enable 3D surround sound.")))
 				if SystemInfo["Has3DSpeaker"] and config.av.surround_3d.value != "none":
