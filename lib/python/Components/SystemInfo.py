@@ -120,3 +120,6 @@ SystemInfo["CanDownmixWMApro"] = fileExists("/proc/stb/audio/wmapro_choices") or
 SystemInfo["CanAC3plusTranscode"] = fileExists("/proc/stb/audio/ac3plus_choices") or fileExists("/proc/stb/audio/ac3plus")
 SystemInfo["CanAACTranscode"] = fileExists("/proc/stb/audio/aac_transcode_choices") or fileExists("/proc/stb/audio/aac_transcode")
 SystemInfo["HDRSupport"] = fileExists("/proc/stb/hdmi/hlg_support_choices") or fileExists("/proc/stb/hdmi/hlg_support")
+SystemInfo["CanDownmixAC3"] = fileExists("/proc/stb/audio/ac3_choices") and "downmix" in open("/proc/stb/audio/ac3_choices", "r").read()
+SystemInfo["CanDownmixDTS"] = fileExists("/proc/stb/audio/dts_choices") and "downmix" in open("/proc/stb/audio/dts_choices", "r").read()
+SystemInfo["CanDownmixAAC"] = fileExists("/proc/stb/audio/aac_choices") and "downmix" in open("/proc/stb/audio/aac_choices", "r").read()
