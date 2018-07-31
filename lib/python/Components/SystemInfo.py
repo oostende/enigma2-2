@@ -1,5 +1,5 @@
 from enigma import eDVBResourceManager, Misc_Options, eDVBCIInterfaces
-from Tools.Directories import fileExists, fileCheck, pathExists, resolveFilename, SCOPE_SKIN
+from Tools.Directories import fileExists, fileCheck, fileHas, pathExists, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getMachineBuild
 
@@ -92,12 +92,12 @@ SystemInfo["HasSwap"] = pathExists("/dev/mmcblk0p10")
 SystemInfo["HasMultiBoot"] = fileCheck("/boot/STARTUP_1") and getMachineBuild() not in ('gb7252')
 SystemInfo["HasMultiBootGB"] = SystemInfo["HasSwap"] and fileCheck("/boot/STARTUP_1") and getMachineBuild() in ('gb7252')
 SystemInfo["HasTranscoding"] = pathExists("/proc/stb/encoder/0") or fileCheck("/dev/bcm_enc0")
-SystemInfo["HasTranscodingH265"] = fileExists("/proc/stb/encoder/0/vcodec_choices") and "h265" in open("/proc/stb/encoder/0/vcodec_choices", "r").read()
+SystemInfo["HasH265Encoder"] = fileHas("/proc/stb/encoder/0/vcodec_choices", "h265")
 SystemInfo["CanNotDoSimultaneousTranscodeAndPIP"] = getBoxType() in ('vusolo4k') or getMachineBuild() in ('gb7252')
 SystemInfo["HasColordepth"] = fileCheck("/proc/stb/video/hdmi_colordepth")
 SystemInfo["HasFrontDisplayPicon"] = getBoxType() in ("vusolo4k", "et8500")
 SystemInfo["Has24hz"] = fileCheck("/proc/stb/video/videomode_24hz")
-SystemInfo["Has2160p"] = fileExists("/proc/stb/video/videomode_preferred") and "2160p50" in open("/proc/stb/video/videomode_preferred", "r").read()
+SystemInfo["Has2160p"] = fileHas("/proc/stb/video/videomode_preferred", "2160p50")
 SystemInfo["HasHDMIpreemphasis"] = fileCheck("/proc/stb/hdmi/preemphasis")
 SystemInfo["HasColorimetry"] = fileCheck("/proc/stb/video/hdmi_colorimetry")
 SystemInfo["HasHDMI-CEC"] = HardwareInfo().has_hdmi() and fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo") and pathExists("/dev/hdmi_cec") or pathExists("/dev/misc/hdmi_cec0")
@@ -120,7 +120,7 @@ SystemInfo["CanDownmixWMApro"] = fileExists("/proc/stb/audio/wmapro_choices") or
 SystemInfo["CanAC3plusTranscode"] = fileExists("/proc/stb/audio/ac3plus_choices") or fileExists("/proc/stb/audio/ac3plus")
 SystemInfo["CanAACTranscode"] = fileExists("/proc/stb/audio/aac_transcode_choices") or fileExists("/proc/stb/audio/aac_transcode")
 SystemInfo["HDRSupport"] = fileExists("/proc/stb/hdmi/hlg_support_choices") or fileExists("/proc/stb/hdmi/hlg_support")
-SystemInfo["CanDownmixAC3"] = fileExists("/proc/stb/audio/ac3_choices") and "downmix" in open("/proc/stb/audio/ac3_choices", "r").read()
-SystemInfo["CanDownmixDTS"] = fileExists("/proc/stb/audio/dts_choices") and "downmix" in open("/proc/stb/audio/dts_choices", "r").read()
-SystemInfo["CanDownmixAAC"] = fileExists("/proc/stb/audio/aac_choices") and "downmix" in open("/proc/stb/audio/aac_choices", "r").read()
+SystemInfo["CanDownmixAC3"] = fileHas("/proc/stb/audio/ac3_choices", "downmix")
+SystemInfo["CanDownmixDTS"] = fileHas("/proc/stb/audio/dts_choices", "downmix")
+SystemInfo["CanDownmixAAC"] = fileHas("/proc/stb/audio/aac_choices", "downmix")
 SystemInfo["HDMIAudioSource"] = fileCheck("/proc/stb/hdmi/audio_source")
