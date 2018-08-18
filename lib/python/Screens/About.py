@@ -38,7 +38,11 @@ class About(Screen):
 		#except:
 		#	hddsplit = AboutHddSplit
 
-		if boxtype == 'gb800solo':
+		if boxtype == 'vusolo2':
+			BoxName = "Vuplus Solo2"
+	        elif boxtype == 'vuzero':
+			BoxName = "Vuplus Zero"
+		elif boxtype == 'gb800solo':
 			BoxName = "GigaBlue HD 800SOLO"
 		elif boxtype == 'gb800se':
 			BoxName = "GigaBlue HD 800SE"
@@ -96,10 +100,10 @@ class About(Screen):
 
 		AboutText = BoxName + " - " + ImageType + serial + "\n"
 
-		#AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
-		#AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
-		#AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
-		#AboutText += _("Image: ") + about.getImageTypeString() + "\n"
+		AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
+		AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
+		AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
+		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 
 		CPUinfo = _("CPU: ") + about.getCPUInfoString()
 		self["CPUinfo"] = StaticText(CPUinfo)
@@ -324,9 +328,9 @@ class CommitInfo(Screen):
 		self.project = 0
 		self.projects = [
 			#("organisation",  "repository",           "readable name",                "branch", "github/gitlab"),
-			("teamblue-e2",      "enigma2",               "teamBlue Enigma2",             "6.1", "github"),
+			("teamblue-e2",      "enigma2",               "teamBlue Enigma2",             "6.3", "github"),
 			("teamblue-e2",      "skin",             "teamBlue Skin GigaBlue Pax",   "master", "github"),
-			("oe-alliance",   "oe-alliance-core",     "OE Alliance Core",             "4.1", "github"),
+			("oe-alliance",   "oe-alliance-core",     "OE Alliance Core",             "4.2", "github"),
 			("oe-alliance",   "oe-alliance-plugins",  "OE Alliance Plugins",          "master", "github"),
 			("oe-alliance",   "enigma2-plugins",      "OE Alliance Enigma2 Plugins",  "master", "github")
 		]
@@ -409,7 +413,7 @@ class ContactInfo(Screen):
 		self["manufacturerinfo"] = StaticText(self.getManufacturerinfo())
 
 	def getManufacturerinfo(self):
-		minfo = "teamBlue\n"
+		minfo = "ostende\n"
 		minfo += "http://teamblue.tech\n"
 		return minfo
 
