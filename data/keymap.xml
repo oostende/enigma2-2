@@ -103,9 +103,10 @@
 			<key id="KEY_RED" mapto="instantRecord" flags="b"/>
 		</device>
 	</map>
-
-	<map context="InfobarExtensions">
-		<key id="KEY_BLUE" mapto="extensions" flags="b"/>
+	
+	<map context="InfoBarINFOpanel">
+		<key id="KEY_BLUE" mapto="infoPanel" flags="b" />			
+		<key id="KEY_RED" mapto="softcamPanel" flags="l" />
 	</map>
 
 	<map context="SatlistShortcutAction">
