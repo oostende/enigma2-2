@@ -75,6 +75,36 @@ AM_CONDITIONAL(VUSOLO2, test "$BOXTYPE" == vusolo2)
 AM_CONDITIONAL(VUDUO2, test "$BOXTYPE" == vuduo2)
 AM_CONDITIONAL(VUZERO, test "$BOXTYPE" == vuzero)
 
+AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-2` == "gb")
+AM_CONDITIONAL(GBIPBOX, test "$MACHINEBUILD" == gbipbox)
+
+if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
+	AC_DEFINE(DREAMBOX, 1, [Dreambox hardware])
+	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
+fi
+
+AC_ARG_WITH(osdanimation,
+	AC_HELP_STRING([--with-osdanimation], [use osd animation, yes or no]),
+	[[withosdanimation=$withval]],
+	[[withosdanimation=no]]
+)
+if test x"$withosdanimation" != xno ; then
+	AC_DEFINE(HAVE_OSDANIMATION, 1,[Define if driver supports animation of osd])
+fi
+AM_CONDITIONAL(HAVE_OSDANIMATION, test x"$withosdanimation" != xno)
+
+AC_ARG_WITH(amlogic,
+	AC_HELP_STRING([--with-amlogic], [use amlogic MPEG decoder]),
+	[[with_amlogic=$withval]],
+	[[with_amlogic=no]]
+)
+AM_CONDITIONAL(HAVE_AMLOGIC, test x"$with_amlogic" = xyes)
+if test x"$with_amlogic" = xyes ; then
+	AC_DEFINE(HAVE_AMLOGIC, 1,[Enables AMLOGIC decoder support])
+	PKG_CHECK_MODULES(AMCODEC, libamcodec)
+	PKG_CHECK_MODULES(AMADEC, libamadec)
+	PKG_CHECK_MODULES(DVBCSA, libdvbcsa)
+fi
 
 AC_ARG_WITH(libvugles2,
 	AS_HELP_STRING([--with-libvugles2],[use libvugles2, yes or no]),
